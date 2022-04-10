@@ -9,4 +9,13 @@
     "default_icon": "popup.png"
   },
   "permissions": ["tabs"] 
+  "content_scripts": [
+  {
+    "js": ["js/content.js"],
+    // 在什么情况下使用该脚本
+    "matches": ["<all_urls>"],
+    // 什么情况下运行【文档加载开始】
+    "run_at": "document_start"
+  }
+],
 }
