@@ -180,17 +180,9 @@ body
 /* 最常访问网址页面的随屏幕分辨率响应，可能会在别的框里沿用 */
 @media (max-width: 992px){
 
-    /* #most_visited_column_8{
-
-        display: none;
-
+    .column{
+        width: 20%!important;
     }
-
-    #most_visited_column_9{
-
-        display: none;
-
-    } */
 }
 
 @media (max-height: 580px){
@@ -200,6 +192,9 @@ body
         height: auto;
     }
 
+    .column{
+        width: 20%!important;
+    }
 
     .ui.bottom.attached.tab.segment
     {
@@ -227,6 +222,9 @@ body
         height: auto;
     }
 
+    .column{
+        width: 20%!important;
+    }
 
     .ui.bottom.attached.tab.segment
     {
@@ -253,6 +251,9 @@ body
         height: 100%;
     }
 
+    .column{
+        width: 20%!important;
+    }
 
     .ui.bottom.attached.tab.segment
     {
@@ -277,6 +278,9 @@ body
         background-color:rgba(255, 255, 255, 0.7);
         height: auto;
     }
+    .column{
+        width: 20%!important;
+    }
 
 }
 
@@ -287,6 +291,9 @@ body
         background-color:rgba(255, 255, 255, 0.7);
         height: 100%;
     }
+    .column{
+        width: 20%!important;
+    }
 
 }
 
@@ -295,6 +302,9 @@ body
     {
         background-color:rgba(255, 255, 255, 0.7);
         height: auto;
+    }
+    .column{
+        width: 20%!important;
     }
 
 }
