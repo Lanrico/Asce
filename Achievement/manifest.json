@@ -9,7 +9,7 @@
     },
     "content_scripts": [{
         "matches": ["https://*.bilibili.com/*"],
-        "js": ["js/jquery-3.6.0.js", "js/Achievenment.js"],
+        "js": ["js/jquery-3.6.0.js", "js/Achievement.js"],
         "css": ["css/AchievementTip.css"],
         "run_at": "document_start"
     }],

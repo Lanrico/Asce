@@ -1,58 +1,17 @@
 document.addEventListener("click", function() {
-    console.log("点了一下");
-
-    // if ($("#extest").length <= 0) {
-    //     var div = document.createElement("div");
-    //     div.className = "block color"
-    //     div.id = "extest"
-    //     var body = document.getElementsByTagName("body")[0]
-    //     body.appendChild(div);
-    // }
-
-
-    // showMinute_block();
-
-
-    // var url = window.location.href
-    // var reg_live = url.match("https://live.bilibili.com")
-    // var reg_video = url.match("https://www.bilibili.com/video/")
-
-    // var author = getAuthor()
-    // console.log(author)
-
-    // setTags()
-
-    // showTip()
-
-    console.log(isOnlive())
-
-
+    // console.log("点了一下");
+    // console.log(isOnlive())
 })
 
-// $(".block").on("load", function() {
-//     console.log("adfawsukghsadoufoaeuwhf")
-
-// })
 $(document).on("click", function() {
-
-
-
 
 })
 
 $(function() {
-
-
-
     generateTip()
-
-
     init()
 
-
-
     setInterval(function() {
-        // console.log("timer: " + timer)
         if (timer && isPlay()) {
             second_temp++;
             if (second_temp >= 60) {
@@ -69,12 +28,10 @@ $(function() {
                 setHour_storage(hour_temp);
             }
         }
-        // console.log(second_temp)
-        // console.log("minute:   " + minute_temp)
+        console.log("minute: " + minute_temp)
     }, 1000)
 
     showTip();
-
 })
 
 var isOnlive = function() {
@@ -85,86 +42,7 @@ var isOnlive = function() {
 var isPlay = function() {
     var vdo = $("video")[0]
     return !vdo.paused
-
-    // console.log("video pause   " + vdo.duration)
-
-
-
-
-    // var player = $("#bilibiliPlayer")[0]
-    // var playerState = player.children[0].classList
-    // for (var i = 0; i < playerState.length; i++) {
-    //     if (playerState[i] == "video-state-pause") {
-    //         return false;
-    //     }
-    // }
-    // return true;
 }
-
-
-
-// var getMinute = function() {
-//     var m = -1;
-//     getMinute_async()
-//     return m;
-// }
-
-// var getMinute_async = async function() {
-//     var minute_get = -1;
-
-//     // chrome.storage.local.get(['minute'], function(result) {
-//     //     if (result.minute) {
-//     //         minute_get = parseInt(result.minute)
-//     //         console.log("minute exist" + minute_get)
-
-
-
-//     //     }
-//     // })
-
-//     await getm_await1().then(res => {
-//         minute_get = parseInt(res);
-//     });
-
-//     // getm_await1().then(res => {
-//     //     console.log("res:   " + res)
-//     //     minute_get = res;
-//     // });
-//     // return minute_get
-
-
-//     console.log("get get minute" + minute_get)
-//     return new Promise(resolve => {
-//         resolve(minute_get)
-//     })
-// }
-
-// var getm_await1 = async function() {
-//     return new Promise((resolve) => {
-//         chrome.storage.sync.get(['minute'], function(result) {
-//             if (result.minute) {
-//                 minute_get = parseInt(result.minute)
-//                 resolve(parseInt(result.minute))
-//                 console.log("minute exist" + minute_get)
-//             }
-//         })
-//     })
-// }
-
-// var getm_await2 = function() {
-//     return new Promise((resolve, reject) => {
-
-//     })
-// }
-
-// var showMinute_block = function() {
-//     chrome.storage.sync.get(['minute'], function(result) {
-//         if (result.minute) {
-//             $("#extest").append("<p>" + result.minute + "</p>")
-//         }
-
-//     })
-// }
 
 var setHour_storage = function(hour_set) {
     var str = 'hour_' + storageType;
@@ -235,23 +113,14 @@ var setTags = function() {
 
 var isClip = function() {
     var x = false;
-
-
-
     tags.forEach(ele => {
         console.log(ele)
         console.log(clipTags)
         console.log(clipTags.includes(ele))
         if (clipTags.includes(ele)) {
-
-
-
-            console.log("the is clip() does not have any bug..........")
             x = true
         }
     })
-
-    console.log("the isclip has bugs??????")
     return x;
 }
 
@@ -411,7 +280,7 @@ var clipTags = ["珈乐", "贝拉", "乃琳", "向晚", "嘉然", "A-SOUL",
 
 var achievement = [{
     type: "clip",
-    hour: 1,
+    hour: 0,
     title: "踏上不归路的AU",
     describe: "观看1小时直播"
 }]
