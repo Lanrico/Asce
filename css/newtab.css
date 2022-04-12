@@ -177,6 +177,7 @@ body
     height: 20%;
 }
 
+/* 最常访问网址页面的随屏幕分辨率响应，可能会在别的框里沿用 */
 @media (max-width: 992px){
 
     /* #most_visited_column_8{
