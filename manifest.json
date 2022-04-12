@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "Asce",
+    "version": "0.2",
+    "description": "这是一个asoul tewtab的插件",
+    "icons": {
+        "128": "img/A-SOULlogo.png",
+        "48": "img/A-SOULlogo.png",
+        "16": "img/A-SOULlogo.png"
+    },
+    "action": {
+        "default_icon": "img/A-SOULlogo.png",
+        "default_popup": "popup.html"
+
+    },
+
+    "permissions": [
+        "storage",
+        "topSites",
+        "tabs"
+    ],
+    "chrome_url_overrides": {
+        "newtab": "newtab.html"
+    }
+
+
+}
