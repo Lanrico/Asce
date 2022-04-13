@@ -1,53 +1,49 @@
-$(function () {
-    $('#input1').keyup(function () {
-        $('#message').text('你好，' + $('#input1').val());
-    })
-})
-
-$(function () {
-    $('#add').click(function () {
-        // 从浏览器中获取存储的金额
-        chrome.storage.sync.get('total', function (budget) {
-            var totalAmount = 0;
-            if (budget.total) {
-                totalAmount = parseFloat(budget.xx);
-            }
-            // 将本次金额加到总金额并存储
-            var amount = $('#amount').val();
-            if (amount) {
-                totalAmount += parseFloat(amount);
-                chrome.storage.sync.set({
-                    'total': totalAmount
-                });
-            }
-            // 更新ui
-            $('#total').text(totalAmount);
-            $('#amount').val('');
-        })
-    })
-})
-
-function onAnchorClick(event) {
-    chrome.tabs.create({
-        url: event.srcElement.href
-    });
-    return false;
+async function getCurrentTab() {
+  let queryOptions = {
+    active: true,
+    currentWindow: true
+  };
+  let [tab] = await chrome.tabs.query(queryOptions);
+  return tab;
 }
 
-// Given an array of URLs, build a DOM list of these URLs in the
-// browser action popup.
-function buildPopupDom(mostVisitedURLs) {
-    var popupDiv = document.getElementById('mostVisited_div');
-    var ol = popupDiv.appendChild(document.createElement('ol'));
+//用户输入评论，激活要注入的js
+document.getElementById('addButton').addEventListener('click', async () => {
+  var xxx = document.getElementById('input1').value;
+  chrome.storage.sync.set({
+    "xxx": xxx
+  });
 
-    for (var i = 0; i < mostVisitedURLs.length; i++) {
-        var li = ol.appendChild(document.createElement('li'));
-        var a = li.appendChild(document.createElement('a'));
-        a.href = mostVisitedURLs[i].url;
-        a.appendChild(document.createTextNode(mostVisitedURLs[i].title));
-        a.addEventListener('click', onAnchorClick);
-    }
+  let tab = await getCurrentTab();
+  chrome.scripting.executeScript({
+    target: {
+      tabId: tab.id
+    },
+    files: ['js/addvideonail.js']
+  });
+});
+
+//用户移除已有的内容
+document.getElementById('removeButton').addEventListener('click', async () => {
+  let tab = await getCurrentTab();
+  chrome.scripting.executeScript({
+    target: {
+      tabId: tab.id
+    },
+    func: remove
+    //files: ['JS/remove.js']
+  });
+});
+
+//移除的实现
+function remove() {
+  // //这是另一版功能，暂不需要用
+  // var divA = document.getElementById("divA");
+  // if (divA) {
+  //     divA.parentNode.removeChild(divA);
+  // }
+  var divB = document.getElementById("divB");
+  if (divB) {
+    divB.parentNode.removeChild(divB);
+  }
 }
-
-chrome.topSites.get(buildPopupDom);
-
