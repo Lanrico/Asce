@@ -1,0 +1,300 @@
+.row
+{
+    height: 100%;
+}
+
+.container
+{
+    height: 100%;
+}
+
+#middle_col{
+    /* background-color:rgba(255, 255, 255, 0.4); */
+    height: 100%;
+    padding-top: 20%;
+}
+
+body 
+{
+    background-image:url('../img/All/DragonBoatFestivalAll.jpg');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#white_cover 
+{
+    background-color:rgba(255, 255, 255, 0.7);
+    height: 100%;
+}
+
+#search_bar
+{
+    height: 40px;
+    width: 100%;
+    margin-bottom: 8%;
+}
+
+#search_dropdown
+{
+    background-color:white;
+}
+
+.margin_container
+{
+    /* margin-top: 25%; */
+    margin-bottom: 19%;
+    margin-left: 8%;
+    margin-right: 8%;
+
+}
+
+#main_function_container
+{
+    background-color:rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
+
+#search_submit
+{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin: -5px;
+    left: 0.5em;
+    opacity: 0;
+}
+
+.ui.bottom.attached.tab.segment
+{
+    height: 400px;
+    background-color:rgba(255, 255, 255, 0);
+    
+    overflow:hidden;
+}
+
+.ui.secondary.pointing.menu
+{
+    background-color:rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* 此处代码也会影响到父级 */
+.most_visited_column
+{
+    /* border: solid; */
+    height: 100%;
+    border-radius: 3%;
+    /* margin-top: 1%;
+    margin-bottom: 1%; */
+
+    /* margin-left: 1.3%;
+    margin-right: 0.5%; */
+    width: 100%!important;
+    text-align: center;
+    text-decoration: none;
+    background-color:rgba(255, 255, 255, 0.4);
+    display: block;
+}
+
+.most_visited_column:hover
+{
+    background-color:rgba(0, 0, 0, 0.1);
+    cursor:pointer;
+}
+
+.main_function_secondary_container
+{
+    margin: 2%;
+    height: 100%;
+
+}
+
+#most_visited_grid
+{
+    height: 96%;
+    margin: 0px;
+}
+
+#div_column_content
+{
+    margin-top: 40%;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.div_column_content_img
+{
+    /* margin-top: 35%; */
+    height: 40px;
+    margin-bottom: 10%;
+}
+
+.most_visited_div_p{
+    text-overflow: ellipsis;
+    width: 80%;
+    overflow: hidden; 
+    white-space: nowrap; 
+    color: black;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.most_visited_img
+{
+    margin: 0 auto;
+    display: block;
+    height: 100%;
+    margin-top: 10%;
+}
+
+.most_visited_a
+{
+    text-decoration: none !important;
+    color: black;
+}
+
+.most_visited_a:hover{
+    color: black;
+}
+
+.div_column_blank
+{
+    height: 20%;
+}
+
+/* 最常访问网址页面的随屏幕分辨率响应，可能会在别的框里沿用 */
+@media (max-width: 992px){
+
+    .column{
+        width: 20%!important;
+    }
+}
+
+@media (max-height: 580px){
+    #white_cover 
+    {
+        background-color:rgba(255, 255, 255, 0.7);
+        height: auto;
+    }
+
+    .column{
+        width: 20%!important;
+    }
+
+    .ui.bottom.attached.tab.segment
+    {
+        height: 100%;
+        background-color:rgba(255, 255, 255, 0);
+        
+        overflow:hidden;
+    }
+    .most_visited_div_p
+    {
+        display: none;
+    }
+    .div_column_blank
+    {
+        height: 4%;
+    }
+
+    
+}
+
+@media (max-height: 802px) and (min-width: 992px){
+    #white_cover 
+    {
+        background-color:rgba(255, 255, 255, 0.7);
+        height: auto;
+    }
+
+    .column{
+        width: 20%!important;
+    }
+
+    .ui.bottom.attached.tab.segment
+    {
+        height: 100%;
+        background-color:rgba(255, 255, 255, 0);
+        
+        overflow:hidden;
+    }
+    .most_visited_div_p
+    {
+        display: none;
+    }
+    .div_column_blank
+    {
+        height: 4%;
+    }
+
+    
+}
+@media (max-height: 672px) and (max-width: 992px){
+    #white_cover 
+    {
+        background-color:rgba(255, 255, 255, 0.7);
+        height: 100%;
+    }
+
+    .column{
+        width: 20%!important;
+    }
+
+    .ui.bottom.attached.tab.segment
+    {
+        height: 100%;
+        background-color:rgba(255, 255, 255, 0);
+        
+        overflow:hidden;
+    }
+    .most_visited_div_p
+    {
+        display: none;
+    }
+    .div_column_blank
+    {
+        height: 4%;
+    }
+}
+
+@media (max-height: 624px) and (max-width: 992px){
+    #white_cover 
+    {
+        background-color:rgba(255, 255, 255, 0.7);
+        height: auto;
+    }
+    .column{
+        width: 20%!important;
+    }
+
+}
+
+
+@media (max-height: 624px) and (max-width: 768px){
+    #white_cover 
+    {
+        background-color:rgba(255, 255, 255, 0.7);
+        height: 100%;
+    }
+    .column{
+        width: 20%!important;
+    }
+
+}
+
+@media (max-height: 424px) and (max-width: 768px){
+    #white_cover 
+    {
+        background-color:rgba(255, 255, 255, 0.7);
+        height: auto;
+    }
+    .column{
+        width: 20%!important;
+    }
+
+}
