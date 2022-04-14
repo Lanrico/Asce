@@ -1,0 +1,47 @@
+.tip-div {
+    z-index: 999;
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+    width: 260px;
+    height: 100px;
+    /* background-color: violet; */
+    display: none;
+}
+
+.tip-img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+    /* background-image: url(https://i0.hdslb.com/bfs/album/18674fd5fc3ac1e3844f24fd0dbcf971efc97f61.png@518w.webp); */
+    background-size: cover;
+}
+
+.tip-title {
+    position: absolute;
+    top: 15px;
+    left: 105px;
+    width: 135px;
+    height: 30px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.tip-describe {
+    position: absolute;
+    top: 50px;
+    left: 105px;
+    width: 135px;
+    height: 40px;
+}
+
+.tip-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    /* background-color: black; */
+}
