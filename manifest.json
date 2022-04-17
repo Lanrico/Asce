@@ -12,12 +12,17 @@
     "default_icon": "img/A-SOULlogo.png",
     "default_popup": "popup.html"
   },
+
   "permissions": [
     "storage",
     "topSites",
     "tabs",
     "activeTab",
-    "scripting"
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "chrome_url_overrides": {
     "newtab": "newtab.html"
@@ -49,5 +54,9 @@
         "https://*.bilibili.com/*"
       ]
     }
-  ]
+  ],
+  "background":
+	{
+    "service_worker": "js/background.js"
+	}
 }

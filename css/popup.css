@@ -1,0 +1,48 @@
+#popupTitle {
+    background-image: url('../img/icon/dogOfDiana.png');
+    background-size: cover;
+    height: 60px;
+    width: 160px;
+}
+
+.container-fluid {
+    margin-top: 10px;
+}
+
+#input1 {
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    line-height: 22px;
+}
+
+body {
+    height: 98%;
+    width: 200px;
+}
+
+.ui.large.buttons {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.ui.pink.button {
+    background-color: #E799B0!important;
+}
+
+.ui.pink.button:hover {
+    background-color: rgba(231, 153, 176, 0.71)!important;
+}
+
+.ui.blue.button {
+    background-color: #9AC8E2!important;
+}
+
+.ui.blue.button:hover {
+    background-color: rgba(154, 200, 226, 0.71)!important;
+}
+
+#tips{
+    text-align: center;
+    opacity: 0.5;
+}

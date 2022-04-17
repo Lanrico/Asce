@@ -14,7 +14,7 @@ var comment = chrome.storage.sync.get("xxx", function (val) {
   // }
 
   if (!document.getElementById('divB')) {
-    addDrawBox();
+    addDrawBox(allTheTimes);
     addLis(allTheTimes, allTheComments);
   }
 
@@ -26,13 +26,13 @@ var test2 = "  6:01  全能队长贝拉直播演示如何开肩 17:36  做 贼 �
 
 
 //初始化弹出框，弹出框的结构如下
-function addDrawBox() {
+function addDrawBox(allTheTimes) {
   //总容器
   var divB = document.createElement('div');
-  divB.setAttribute('style', "z-index:10000001;position:absolute;width:15%;height:10%;bottom:60%;left:23%;");
+  divB.setAttribute('style', "z-index:10000001;position:absolute;width:10%;height:40%;top:12%;left:150px;");
   divB.setAttribute('id', "divB");
   divB.setAttribute('class', "container mt-3");
-  document.getElementsByClassName('bilibili-player-video-control-bottom-center')[0].append(divB);
+  document.getElementsByClassName('bilibili-player-video-control-bottom-left')[0].append(divB);
   //弹出框类
   var dropup = document.createElement('div');
   dropup.setAttribute('id', 'theDropup');
@@ -42,13 +42,16 @@ function addDrawBox() {
   var button1 = document.createElement('button');
   button1.setAttribute('class', 'btn btn-primary dropdown-toggle');
   button1.setAttribute('data-bs-toggle', 'dropdown');
-  button1.setAttribute('style', 'text-align: center;color:white;')
-  button1.append(document.createTextNode("自制的分集"));
+  button1.setAttribute('style', 'text-align: center;color:rgba(255, 255, 255, 0.85);font-size:100%;')
+  button1.append(document.createTextNode("视频轴书签"));
   dropup.append(button1);
   //容纳每条弹出内容的容器
   var ul1 = document.createElement('ul');
   ul1.setAttribute('id', "theUl")
   ul1.setAttribute('class', 'dropdown-menu');
+  if(allTheTimes.length >= 14){
+    ul1.setAttribute('style', "height: 400px; overflow-y: scroll;");
+  }
   document.getElementById('theDropup').append(ul1);
 
 }
@@ -58,6 +61,7 @@ function addDrawBox() {
 function addLis(allTheTimes, allTheComments) {
   for (var i = 0; i < allTheTimes.length; i++) {
     var lis = document.createElement('li');
+    lis.setAttribute('class', 'liComment');
     var spans = document.createElement('span');
     lis.append(spans);
     spans.setAttribute('class', 'dropdown-item');
@@ -77,7 +81,7 @@ function produceText(comment, time) {
   y = x % 3600; //分钟
   y = Math.floor(y / 60); //分钟数
   x = x % 60; //秒数
-  if (z = 0) {
+  if (z != 0) {
     insideStr = z + ":" + y + ":" + x + comment;
   } else {
     insideStr = y + ":" + x + comment;
@@ -162,34 +166,61 @@ function getTimes(str) {
   return result;
 }
 
-//用户输入的评论含两部分，时间和对应的语言描述，此为取出语言描述
 function getComments(str) {
   //在弄评论之前犁地一遍，评论里也会有冒号，把除了时间里的冒号替换成“-”
   temp = str.split('');
   for (var i = 0; i < temp.length - 2; i++) {
     var x0 = parseInt(temp[i]);
     var x2 = parseInt(temp[i + 2]);
-    //评论中唯一确定的，作为划界用的就是时间，时间是前数字中冒号，后数字形式，故将非此形式的冒号代换，以防其扰乱划分
     if ((temp[i + 1] == ":") && (!(/\d/.test(x0)) || !(/\d/.test(x2)))) {
       temp[i + 1] = "-";
     }
   }
   afStr = temp.join('');
-  tempResult = [];
-  result = [];
   temp2 = afStr.split(':');
+
+  //这个地方加一层判断，如果是时间在前，就要这样处理了，
+  if (((afStr[2] == ":") && ((/\d/.test(afStr[1])) || (/\d/.test(afStr[3])))) || ((afStr[1] == ":") && ((/\d/.test(afStr[0])) || (/\d/.test(afStr[2]))))) {
+    return dealCom1(temp2);
+  } else {
+    return dealCom2(temp2);
+  }
+
+  //这里其实明显是有bug的，
+  //1，文字描述最好是有字的，希望别往里面塞纯时间轴的
+  //2, 文字描述不要是长度低于2的纯数字
+}
+
+function dealCom1(temp2) {//时间在前的处理方式
+  result = [];
+  tempResult = [];
   for (var i = 0; i < temp2.length; i++) {
-    if (temp2[i].length <= 2) {} else {
+    if ((temp2[i].length <= 2) && (/\d/.test(temp2[i]))) {
+    } else {
       tempResult.push(temp2[i]);
     }
   }
-  //这是需要处理的评论的集合
+  //这是需要的文字描述的集合
   for (var i = 0; i < tempResult.length - 1; i++) {
     result.push(tempResult[i].slice(2, tempResult[i].length - 2));
   }
   result.push(tempResult[tempResult.length - 1].slice(2));
   return result;
-  //这里其实明显是有bug的
-  //1，评论最好是有字的，希望别往里面塞纯时间轴的
-  //2,得以时间轴开头，不是以评论开头的，
+}
+
+
+function dealCom2(temp2) {//时间在后的处理方式
+  result = [];
+  tempResult = [];
+  for (var i = 0; i < temp2.length; i++) {
+    if ((temp2[i].length <= 2) && (/\d/.test(temp2[i]))) {
+    } else {
+      tempResult.push(temp2[i]);
+    }
+  }
+  result.push(tempResult[0].slice(0, tempResult[0].length - 2));
+  for (var i = 1; i < tempResult.length; i++) {
+    result.push(tempResult[i].slice(2, tempResult[i].length - 2));
+  }
+  return result;
 }
