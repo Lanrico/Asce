@@ -42,8 +42,8 @@ ol.onclick = function() {
     active: true,
     lastFocusedWindow: true
   }, function(tabs) {
-    var tab = tabs[0];
-    chrome.tabs.sendMessage(tab.id, { greeting: "hello" },
+    // var tab = tabs[0];
+    chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" },
       function(response) {
         console.log(response);
       });
