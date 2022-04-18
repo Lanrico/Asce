@@ -15,12 +15,12 @@
     // 在什么情况下使用该脚本
     "matches": ["<all_urls>"],
     // 什么情况下运行【文档加载开始】
-    "run_at": "document_start"
+    "run_at": "document_end"
   }
 ],
     "background": {
     // "page": "background.html",
     "scripts": ["js/background.js"],
     "persistent": true
-    },
+    }
 }
