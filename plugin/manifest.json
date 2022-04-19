@@ -8,13 +8,11 @@
     "default_popup": "popup.html",
     "default_icon": "popup.png"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs","storage"],
   "content_scripts": [
   {
     "js": ["js/tet.js"],
-    // 在什么情况下使用该脚本
     "matches": ["<all_urls>"],
-    // 什么情况下运行【文档加载开始】
     "run_at": "document_end"
   }
 ],

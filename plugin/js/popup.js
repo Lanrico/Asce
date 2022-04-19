@@ -1,3 +1,4 @@
+// url
 var btn = document.getElementById("btn");
 btn.onclick = function() {
   // chrome.tabs.getSelected(null, function(tab) {
@@ -36,6 +37,8 @@ btn.onclick = function() {
   });
 
 };
+
+// get content
 var ol = document.getElementById("ol");
 ol.onclick = function() {
   chrome.tabs.query({
