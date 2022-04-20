@@ -47,3 +47,54 @@ function remove() {
     divB.parentNode.removeChild(divB);
   }
 }
+
+//以下为popup中各按钮的事件
+//“第一次使用点击这里”按钮
+$(function () {
+  $('#tips').click(function () {
+    document.getElementById('videomark_main').setAttribute('style', 'display: none;');
+    document.getElementById('videomark_tips').setAttribute('style', 'display: block;');
+  });
+});
+
+//所有“返回”按钮
+$(function () {
+  $('.tip2').click(function () {
+    document.getElementById('videomark_main').setAttribute('style', 'display: block;');
+    document.getElementById('videomark_tips').setAttribute('style', 'display: none;');
+    document.getElementById('videomark_tip1').setAttribute('style', 'display: block;');
+    document.getElementById('videomark_tip2').setAttribute('style', 'display: none;');
+    document.getElementById('videomark_tip3').setAttribute('style', 'display: none;');
+  });
+});
+
+//所有“上一步”按钮
+$(function () {
+  $('#videomark_tip2>.ui.buttons>.tip1').click(function () {
+    document.getElementById('videomark_tip1').setAttribute('style', 'display: block;');
+    document.getElementById('videomark_tip2').setAttribute('style', 'display: none;');
+  });
+});
+
+$(function () {
+  $('#videomark_tip3>.ui.buttons>.tip1').click(function () {
+    document.getElementById('videomark_tip2').setAttribute('style', 'display: block;');
+    document.getElementById('videomark_tip3').setAttribute('style', 'display: none;');
+  });
+});
+
+//所有“下一步”按钮
+$(function () {
+  $('#videomark_tip1>.ui.buttons>.tip3').click(function () {
+    document.getElementById('videomark_tip2').setAttribute('style', 'display: block;');
+    document.getElementById('videomark_tip1').setAttribute('style', 'display: none;');
+  });
+});
+
+$(function () {
+  $('#videomark_tip2>.ui.buttons>.tip3').click(function () {
+    document.getElementById('videomark_tip3').setAttribute('style', 'display: block;');
+    document.getElementById('videomark_tip2').setAttribute('style', 'display: none;');
+  });
+});
+

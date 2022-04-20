@@ -6,24 +6,32 @@
 }
 
 .container-fluid {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 #input1 {
-    width: 300px;
-    height: 150px;
+    width: 280px;
+    height: 300px;
     padding: 10px;
     line-height: 22px;
+    margin-left: 10px;
 }
 
 body {
-    height: 98%;
+    height: 90%;
     width: 200px;
 }
 
+.image {
+    height: 245px!important;
+    width: auto!important;
+    margin: 0 auto;
+}
+
 .ui.large.buttons {
-    margin-top: 20px;
-    margin-left: 30px;
+    margin-top: 25px;
+    margin-left: 34px;
+    margin-bottom: 10px;
 }
 
 .ui.pink.button {
@@ -31,7 +39,7 @@ body {
 }
 
 .ui.pink.button:hover {
-    background-color: rgba(231, 153, 176, 0.71)!important;
+    background-color: rgb(224, 117, 149)!important;
 }
 
 .ui.blue.button {
@@ -39,10 +47,36 @@ body {
 }
 
 .ui.blue.button:hover {
-    background-color: rgba(154, 200, 226, 0.71)!important;
+    background-color: rgba(84, 167, 215, 0.9)!important;
 }
 
-#tips{
-    text-align: center;
+#tips {
+    /* text-align: center; */
+    margin: 0 auto;
+    width: 130px;
     opacity: 0.5;
+    display: block;
+    cursor: pointer;
+}
+
+#tips:hover {
+    opacity: 0.8;
+}
+
+#videomark_tips{
+    display: block;
+}
+
+#videomark_tip2 {
+    display: none;
+}
+
+#videomark_tip3 {
+    display: none;
+}
+
+.ui.buttons {
+    width: 80%;
+    margin-left: 25px;
+    margin-bottom: 8px;
 }

@@ -39,7 +39,7 @@ function buildNewtabDom(mostVisitedURLs) {
     div_p.setAttribute("class", "most_visited_div_p");
     div_p.appendChild(document.createTextNode(mostVisitedURLs[i].title));
   }
-  setTimeout(function(){window.stop();},500); //使新标签页不会因为网络问题加载太长时间占用网络资源，加载0.5s后停止
+  setTimeout(function(){window.stop();},1000); //使新标签页不会因为网络问题加载太长时间占用网络资源，加载0.5s后停止
 }
 
 chrome.topSites.get(buildNewtabDom);
