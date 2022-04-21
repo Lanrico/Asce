@@ -1,3 +1,5 @@
+$('.menu .item').tab();
+//获取当前标签页
 async function getCurrentTab() {
   let queryOptions = {
     active: true,
@@ -97,4 +99,6 @@ $(function () {
     document.getElementById('videomark_tip2').setAttribute('style', 'display: none;');
   });
 });
+
+
 

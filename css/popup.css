@@ -1,17 +1,23 @@
-#popupTitle {
-    background-image: url('../img/icon/dogOfDiana.png');
-    background-size: cover;
-    height: 60px;
-    width: 160px;
+.ui.secondary.pointing.menu {
+    margin: 0;
+}
+
+.ui.bottom.attached.tab.segment.active {
+    border: none;
+}
+
+#first_segment {
+    padding: 0;
 }
 
 .container-fluid {
-    margin-top: 15px;
+    margin-top: 14px;
+    border: none;
 }
 
 #input1 {
     width: 280px;
-    height: 300px;
+    height: 310px;
     padding: 10px;
     line-height: 22px;
     margin-left: 10px;
@@ -30,7 +36,6 @@ body {
 
 .ui.large.buttons {
     margin-top: 25px;
-    margin-left: 34px;
     margin-bottom: 10px;
 }
 
@@ -51,12 +56,11 @@ body {
 }
 
 #tips {
-    /* text-align: center; */
     margin: 0 auto;
     width: 130px;
     opacity: 0.5;
     display: block;
-    cursor: pointer;
+    cursor: pointer;  
 }
 
 #tips:hover {
@@ -80,3 +84,4 @@ body {
     margin-left: 25px;
     margin-bottom: 8px;
 }
+
