@@ -34,7 +34,7 @@ achievementType.forEach(type => {
             }
         }
 
-        $("#achievement_time_" + type).html(h + "H" + m + "Min / " + htop + "H")
+        $("#achievement_time_" + type).html(h + "h " + m + "min / " + htop + "h")
 
         var per = (((h - hbom) * 60 + m) / ((htop - hbom) * 60)) * 100
         $("#achievement_progress_" + type).progress("set percent", per)
