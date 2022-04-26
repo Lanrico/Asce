@@ -16,6 +16,13 @@ achievementType.forEach(type => {
     chrome.storage.sync.get([ms, hs], function(res) {
         var m = res[ms];
         var h = res[hs];
+        
+        if(m == undefined){
+            m = 0
+        }
+        if(h == undefined){
+            h = 0;
+        }
 
         var htop = 0;
         var hbom = 0;
