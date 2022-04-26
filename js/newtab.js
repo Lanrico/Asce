@@ -190,15 +190,13 @@ $(function () {
   });
 });
 
+$("#setting_save").on("click", function() {
+    console.log("option in button")
+    option.showTip = $("#setting_showTip")[0].checked;
+    option.TipTime = $("#setting_TipTime")[0].value;
 
-    $("#setting_save").on("click", function() {
-        console.log("option in button")
-        option.showTip = $("#setting_showTip")[0].checked;
-        option.TipTime = $("#setting_TipTime")[0].value;
-
-        chrome.storage.sync.set({ 'option': option }, function() {
-            console.log(option)
-        })
+    chrome.storage.sync.set({ 'option': option }, function() {
+        console.log(option)
     })
 })
 
