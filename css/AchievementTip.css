@@ -21,20 +21,22 @@
 
 .tip-title {
     position: absolute;
-    top: 15px;
+    top: 25px;
     left: 105px;
-    width: 135px;
+    width: 140px;
     height: 30px;
     font-size: medium;
     font-weight: bold;
+    color: aliceblue;
 }
 
 .tip-describe {
     position: absolute;
-    top: 50px;
+    top: 65px;
     left: 105px;
     width: 135px;
     height: 40px;
+    color: aliceblue;
 }
 
 .tip-close {

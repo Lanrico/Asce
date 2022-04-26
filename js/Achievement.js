@@ -437,8 +437,9 @@ var showTip = function() {
                 $("#tip-describe").text(describe);
 
                 //设置成就弹窗的图片和背景
-                $("#tip-div").css("background-image", "url(" + chrome.runtime.getURL(tip_img[0].bg) + ")")
-                $("#tip-img").css("background-image", "url(" + chrome.runtime.getURL(tip_img[0].img) + ")")
+                setTipDesign(ele)
+                    // $("#tip-div").css("background-image", "url(" + chrome.runtime.getURL(tip_img[0].bg) + ")")
+                    // $("#tip-img").css("background-image", "url(" + chrome.runtime.getURL(tip_img[0].img) + ")")
 
                 //淡入显示成就弹窗
                 $("#tip-div").fadeIn()
@@ -452,7 +453,15 @@ var showTip = function() {
             }
         })
     })
+}
 
+function setTipDesign(type) {
+    if (!Object.keys(TipDesign).includes(type)) {
+        type = Object.keys(TipDesign)[Math.floor(Math.random() * 5)]
+    }
+
+    $("#tip-div").css("background-color", TipDesign[type].color)
+    $("#tip-img").css("background-image", "url(" + chrome.runtime.getURL(TipDesign[type].img) + ")")
 
 }
 
@@ -607,3 +616,26 @@ var tip_img = [{
 var AchievementType_all = ["alive", "clip", "Diana", "Eileen", "Bella", "Ava", "Carol", "niubi"]
 
 var achievementTime = [1, 2, 3, 5, 8, 10]
+
+var TipDesign = {
+    "Diana": {
+        color: "rgb(231, 153, 176)",
+        img: "/img/WeAre_Diana.png"
+    },
+    "Eileen": {
+        color: "rgb(86, 101, 143)",
+        img: "/img/WeAre_Eileen.png"
+    },
+    "Bella": {
+        color: "rgb(251, 97, 86)",
+        img: "/img/WeAre_Bella.png"
+    },
+    "Ava": {
+        color: "rgb(154, 200, 226)",
+        img: "/img/WeAre_Ava.png"
+    },
+    "Carol": {
+        color: "rgb(184, 166, 217)",
+        img: "/img/WeAre_Carol.png"
+    },
+}
