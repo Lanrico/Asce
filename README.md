@@ -10,5 +10,6 @@
 
 视频书签需美化界面，有空的话还需启用并美化副功能（代码里有）
 
-已知问题：achievement加载了无用的json
-achievement提示要改成圆角
+已知问题：achievement加载了无用的json；
+achievement提示要改成圆角；
+achievement有无关紧要的报错
