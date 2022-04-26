@@ -15,10 +15,11 @@
   <div id="main_function_container">
     <div class="ui secondary pointing menu">
       <!-- 导航栏里的几个标签啦 -->
-      <a class="item active" data-tab="videomark">视频轴标签</a>
-      <a class="item" data-tab="second">Second</a>
+      <a class="item" data-tab="videomark" id="videoMark_navi" style="display: none;">视频轴标签</a>
+      <a class="item" data-tab="favorites" id="favorites_navi" style="display: none;">收藏夹</a>
+      <a class="item" data-tab="noOne" id="noOne_navi" style="display: none;">功能关闭</a>
     </div>
-    <div class="ui bottom attached tab segment active" id="first_segment" data-tab="videomark">
+    <div class="ui bottom attached tab segment" id="videoMark_segment" data-tab="videomark">
 
       <div class="container-fluid">
         <h2 class="ui header">
@@ -29,7 +30,7 @@
 
         <div id="videomark_main">
           <div class="field">
-            <textarea spellcheck="false" id="input1" placeholder="视频轴"></textarea>
+            <textarea spellcheck="false" id="input1" placeholder="想要更换已有标签时，                            先点击“去除标签”按钮"></textarea>
           </div>
           <div class="ui large buttons">
             <button class="ui pink button" id="addButton">获取书签</button>
@@ -133,7 +134,7 @@
         </div>
       </div>
     </div>
-    <div class="ui bottom attached tab segment" data-tab="second">
+    <div class="ui bottom attached tab segment" id="favorites_segment" data-tab="favorites">
       <!-- 其他功能加在这里 -->
     </div>
   </div>

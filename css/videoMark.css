@@ -1,0 +1,105 @@
+
+#theDropup {
+    width: 100%;
+    height: 100%;
+    line-height: normal;
+}
+
+#divB {
+    margin: 0;
+    padding: 0;
+}
+
+.liComment {
+    line-height: 23px;
+
+}
+
+#theUl {
+    overflow-y: hidden;
+    background: rgba(21, 21, 21, .9);
+    color: #fff;
+    z-index: 10000000000;
+}
+
+#theUl::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+#theUl::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #535353;
+}
+
+#theUl::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: hsla(0, 0%, 100%, .1);
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    color: #fff;
+    background: hsla(0, 0%, 100%, .1);
+}
+
+
+
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, 0)
+}
+
+.btn-primary {
+    color: rgba(255, 255, 255, 0.512);
+    background-color: rgba(49, 132, 253, 0);
+    border-color: rgba(49, 132, 253, 0);
+    width: 100%;
+    height: 100%;
+}
+
+.btn-primary:hover {
+    color: #fff !important;
+    background-color: rgba(49, 132, 253, 0);
+    border-color: rgba(49, 132, 253, 0);
+}
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus {
+    color: #fff;
+    background-color: rgba(49, 132, 253, 0);
+    border-color: rgba(49, 132, 253, 0);
+    box-shadow: 0 0 0 .25rem rgba(49, 132, 253, 0)
+}
+
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: rgba(49, 132, 253, 0);
+    border-color: rgba(49, 132, 253, 0);
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    color: #fff;
+    background-color: rgba(49, 132, 253, 0);
+    border-color: rgba(49, 132, 253, 0)
+}
+
+
+.btn-check:active+.btn-primary:focus,
+.btn-check:checked+.btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .25rem rgba(49, 132, 253, 0)
+}
