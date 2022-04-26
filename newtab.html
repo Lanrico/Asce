@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master\semantic.css">
     <link rel="stylesheet" type="text/css" href="css/newtab.css">
     <link href="bootstrap-5.1.3-dist\css\bootstrap.min.css" rel="stylesheet">
+
     <script src="bootstrap-5.1.3-dist\js\bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="Semantic-UI-CSS-master\semantic.min.js"></script>
@@ -26,7 +27,8 @@
         <div class="container">
             <!-- 将页面分为中间固定值，两侧对半分 -->
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+                </div>
                 <div id="middle_col" style="width:1000px">
                     <div class="margin_container">
                         <form id="search_bar" class="ui right action left icon input" action="http://www.baidu.com/baidu">
@@ -46,26 +48,26 @@
                         <div id="main_function_container">
                             <div class="ui secondary pointing menu">
                                 <!-- 导航栏里的几个标签啦 -->
-                                <a class="item active" data-tab="mostVisited">常用网站</a>
-                                <a class="item" data-tab="second">本周直播时间</a>
-                                <a class="item" data-tab="third">成就</a>
+
+                                <a class="item active" data-tab="mostVisited" id="mostVisited_navi">常用网站</a>
+                                <a class="item" data-tab="liveTime" id="liveTime_navi" style="display: none;">直播时间</a>
+                                <a class="item" data-tab="achievement" id="achievement_navi" style="display: none;">成就</a>
+                                <a class="item" data-tab="favorites" id="favorites_navi" style="display: none;">收藏夹</a>
                                 <a class="right item" data-tab="selection">插件设置 </a>
                             </div>
                             <div class="ui bottom attached tab segment active" data-tab="mostVisited">
                                 <div class="main_function_secondary_container">
-
-                                    <div class="ui five column doubling stackable grid container" id="most_visited_grid">
+                                    <div class="ui five column doubling stackable grid container"
+                                        id="most_visited_grid">
                                         <!-- 此处js填充常用网址 -->
                                     </div>
                                 </div>
                             </div>
-                            <div class="ui bottom attached tab segment" data-tab="second">
-                                <div id='mostVisited_div'>
-                                    <img id="schedule" src="http://1.116.119.249/Asce/Schedule.png">
-                                </div>
-                                <!-- 默认新标签页的常用网站功能 -->
+
+                            <div class="ui bottom attached tab segment" data-tab="liveTime">
+                                <img id="schedule" src="http://1.116.119.249/Asce/Schedule.png">
                             </div>
-                            <div class="ui bottom attached tab segment" data-tab="third">
+                            <div class="ui bottom attached tab segment" data-tab="achievement">
                                 <div id="achievement_container">
                                     <div id="achievement_clip" class="achievement-container">
                                         <div class="achievement-type-main">
@@ -173,21 +175,142 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="ui bottom attached tab segment" data-tab="favorites">
+                                <!-- 其他功能加在这里 -->
+                            </div>
                             <div class="ui bottom attached tab segment" data-tab="selection">
-                                <div class="ttest" id="ttest">
-                                    <label>观看时提醒成就</label>
-                                    <div class="ui toggle checkbox">
-                                        <input id="setting_showTip" type="checkbox" class="hidden">
-                                    </div>
-                                    <div class="ui right labeled input">
-                                        <label>成就弹窗时间：</label>
-                                        <input id="setting_TipTime" type="text" value="10">
-                                        <div class="ui basic label">
-                                            s
+                                <div class="ui grid">
+                                    <div class="four wide column">
+                                        <div class="ui secondary vertical menu">
+                                            <a class="active item" data-tab="main_config">主要功能设置</a>
+                                            <a class="item" data-tab="videoMark_config">
+                                                视频轴标签
+                                            </a>
+                                            <a class="item" data-tab="checkLiveTime_config">
+                                                直播时间查询
+                                            </a>
+                                            <a class="item" data-tab="liveReminder_config">
+                                                直播提醒
+                                            </a>
+                                            <a class="item" data-tab="achievement_config">
+                                                成就
+                                            </a>
+                                            <a class="item" data-tab="favorites_config">
+                                                收藏夹
+                                            </a>
+                                            <a class="item" data-tab="live2D_config">
+                                                live2D
+                                            </a>
                                         </div>
                                     </div>
-                                    <div id="setting_save" class="ui primary button">Save</div>
-                                </div>
+                                    <div class="twelve wide stretched column">
+                                        <div class="ui bottom attached tab segment active" data-tab="main_config">
+                                            <form name="main_form">
+                                                <div class="ui grid" id="secondary_grid_main">
+                                                    <div class="five wide column">
+                                                        视频轴标签
+                                                        <br>
+                                                        直播时间查询
+                                                        <br>
+                                                        直播提醒
+                                                        <br>
+                                                        成就
+                                                        <br>
+                                                        收藏夹
+                                                        <br>
+                                                        live2D
+                                                        <br>
+                                                    </div>
+                                                    <div class="five wide column">
+                                                        <div class="ui slider checkbox" id="checkbox_main_videoMark">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div>
+                                                        <br>
+                                                        <div class="ui slider checkbox" id="checkbox_main_checkLiveTime">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div>
+                                                        <br>
+                                                        <div class="ui slider checkbox" id="checkbox_main_liveReminder">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div>
+                                                        <br>
+                                                        <div class="ui slider checkbox" id="checkbox_main_achievement">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div> <br>
+                                                        <div class="ui slider checkbox" id="checkbox_main_favorites">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div> <br>
+                                                        <div class="ui slider checkbox" id="checkbox_main_live2D">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                    <div class="button_field">
+                                                        <button class="ui pink button" id="main_submit" type="button">保存设置</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="ui bottom attached tab segment" data-tab="videoMark_config">
+                                            <form name="videoMark_form">
+                                                <div class="ui grid" id="secondary_grid_videoMark">
+                                                    <div class="five wide column">
+                                                        单页显示标签数
+                                                        <br>
+                                                    </div>
+                                                    <div class="eight wide column">
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="gender">
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Gender</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Male</div>
+                                                                <div class="item" data-value="0">Female</div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                    <div class="button_field">
+                                                        <button class="ui blue button" id="videoMark_submit" type="button">保存设置</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="ui bottom attached tab segment" data-tab="checkLiveTime_config">
+                                            这是可拉伸的网格
+                                        </div>
+                                        <div class="ui bottom attached tab segment" data-tab="liveReminder_config">
+                                            这是可拉伸的网格列。此片段总是会匹配标
+                                        </div>
+                                        <div class="ui bottom attached tab segment" data-tab="achievement_config">
+                                            <div class="ttest" id="ttest">
+                                                <label>观看时提醒成就</label>
+                                                <div class="ui toggle checkbox">
+                                                    <input id="setting_showTip" type="checkbox" class="hidden">
+                                                </div>
+                                                <div class="ui right labeled input">
+                                                    <label>成就弹窗时间：</label>
+                                                    <input id="setting_TipTime" type="text" value="10">
+                                                    <div class="ui basic label">
+                                                        s
+                                                    </div>
+                                                </div>
+                                                <div id="setting_save" class="ui primary button">Save</div>
+                                             </div>
+                                        </div>
+                                        <div class="ui bottom attached tab segment" data-tab="favorites_config">
+                                            这是可拉伸的网格列。此片段总是会匹配标
+                                        </div>
+                                        <div class="ui bottom attached tab segment" data-tab="live2D_config">
+                                            这是可拉伸的网格
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -195,11 +318,12 @@
                 <div class="col"></div>
             </div>
         </div>
+        <script src="js/oh-my-diana.user.js"></script>
         <script src='js/afternewtab.js'></script>
-
+    </div>
+    <div id="live2D_container">
 
     </div>
-
 </body>
 
 </html>
