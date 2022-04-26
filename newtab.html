@@ -29,8 +29,7 @@
                 <div class="col"></div>
                 <div id="middle_col" style="width:1000px">
                     <div class="margin_container">
-                        <form id="search_bar" class="ui right action left icon input"
-                            action="http://www.baidu.com/baidu">
+                        <form id="search_bar" class="ui right action left icon input" action="http://www.baidu.com/baidu">
                             <i class="circular search link icon">
                                 <input type="submit" value="" id="search_submit">
                             </i>
@@ -48,26 +47,147 @@
                             <div class="ui secondary pointing menu">
                                 <!-- 导航栏里的几个标签啦 -->
                                 <a class="item active" data-tab="mostVisited">常用网站</a>
-                                <a class="item" data-tab="second">Second</a>
-                                <a class="item" data-tab="third">Third</a>
+                                <a class="item" data-tab="second">本周直播时间</a>
+                                <a class="item" data-tab="third">成就</a>
                                 <a class="right item" data-tab="selection">插件设置 </a>
                             </div>
                             <div class="ui bottom attached tab segment active" data-tab="mostVisited">
                                 <div class="main_function_secondary_container">
 
-                                    <div class="ui five column doubling stackable grid container" id = "most_visited_grid">
+                                    <div class="ui five column doubling stackable grid container" id="most_visited_grid">
                                         <!-- 此处js填充常用网址 -->
                                     </div>
                                 </div>
                             </div>
                             <div class="ui bottom attached tab segment" data-tab="second">
-                                <div id='mostVisited_div'></div> <!-- 默认新标签页的常用网站功能 -->
+                                <div id='mostVisited_div'>
+                                    <img id="schedule" src="http://1.116.119.249/Asce/Schedule.png">
+                                </div>
+                                <!-- 默认新标签页的常用网站功能 -->
                             </div>
                             <div class="ui bottom attached tab segment" data-tab="third">
-                                Third
+                                <div id="achievement_container">
+                                    <div id="achievement_clip" class="achievement-container">
+                                        <div class="achievement-type-main">
+                                            观看切片时长：
+                                        </div>
+                                        <div id="achievement_time_clip" class="achievement-time-main">
+                                        </div>
+                                        <div class="progress-container-main">
+                                            <div id="achievement_progress_clip" class="ui progress">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="achievement_alive" class="achievement-container">
+                                        <div class="achievement-type-main">
+                                            观看直播时长：
+                                        </div>
+                                        <div id="achievement_time_alive" class="achievement-time-main">
+                                        </div>
+                                        <div class="progress-container-main">
+                                            <div id="achievement_progress_alive" class="ui progress">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="achievement_Diana" class="achievement-container ui segment">
+                                        <div class="achievement-icon">
+                                            <img id="achievement_icon_Diana" src="https://i2.hdslb.com/bfs/face/d399d6f5cf7943a996ae96999ba3e6ae2a2988de.jpg@240w_240h_1c_1s.webp" width="50px" height="50px">
+                                        </div>
+                                        <div id="achievement_time_Diana" class="achievement-title-piecemeal">
+                                        </div>
+                                        <div class="progress-container-piecemeal">
+                                            <div id="achievement_progress_Diana" class="ui small progress Diana">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="achievement_Eileen" class="achievement-container ui segment">
+                                        <div id="achievement_icon_Eileen" class="achievement-icon">
+                                            <img id="achievement_icon_Eileen" src="https://i1.hdslb.com/bfs/face/8895c87082beba1355ea4bc7f91f2786ef49e354.jpg@240w_240h_1c_1s.webp" width="50px" height="50px">
+                                        </div>
+                                        <div id="achievement_time_Eileen" class="achievement-title-piecemeal">
+                                        </div>
+                                        <div class="progress-container-piecemeal">
+                                            <div id="achievement_progress_Eileen" class="ui small progress Eileen">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="achievement_Bella" class="achievement-container ui segment">
+                                        <div id="achievement_icon_Bella" class="achievement-icon">
+                                            <img id="achievement_icon_Bella" src="https://i2.hdslb.com/bfs/face/668af440f8a8065743d3fa79cfa8f017905d0065.jpg@240w_240h_1c_1s.webp" width="50px" height="50px">
+                                        </div>
+                                        <div id="achievement_time_Bella" class="achievement-title-piecemeal">
+                                        </div>
+                                        <div class="progress-container-piecemeal">
+                                            <div id="achievement_progress_Bella" class="ui small progress Bella">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="achievement_Ava" class="achievement-container ui segment">
+                                        <div id="achievement_icon_Ava" class="achievement-icon">
+                                            <img id="achievement_icon_Ava" src="https://i0.hdslb.com/bfs/face/566078c52b408571d8ae5e3bcdf57b2283024c27.jpg@240w_240h_1c_1s.webp" width="50px" height="50px">
+                                        </div>
+                                        <div id="achievement_time_Ava" class="achievement-title-piecemeal">
+                                        </div>
+                                        <div class="progress-container-piecemeal">
+                                            <div id="achievement_progress_Ava" class="ui small progress Ava">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="achievement_Carol" class="achievement-container ui segment">
+                                        <div id="achievement_icon_Carol" class="achievement-icon">
+                                            <img id="achievement_icon_Carol" src="https://i1.hdslb.com/bfs/face/a7fea00016a8d3ffb015b6ed8647cc3ed89cbc63.jpg@240w_240h_1c_1s.webp" width="50px" height="50px">
+                                        </div>
+                                        <div id="achievement_time_Carol" class="achievement-title-piecemeal">
+                                        </div>
+                                        <div class="progress-container-piecemeal">
+                                            <div id="achievement_progress_Carol" class="ui small progress Carol">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="achievement_niubi" class="achievement-container ui segment">
+                                        <div id="achievement_icon_niubi" class="achievement-icon">
+                                            <img id="achievement_icon_niubi" width="50px" height="50px">
+                                        </div>
+                                        <div id="achievement_time_niubi" class="achievement-title-piecemeal">
+                                        </div>
+                                        <div class="progress-container-piecemeal">
+                                            <div id="achievement_progress_nuibi" class="ui small progress">
+                                                <div class="bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="ui bottom attached tab segment" data-tab="selection">
-                                Third
+                                <div class="ttest" id="ttest">
+                                    <label>观看时提醒成就</label>
+                                    <div class="ui toggle checkbox">
+                                        <input id="setting_showTip" type="checkbox" class="hidden">
+                                    </div>
+                                    <div class="ui right labeled input">
+                                        <label>成就弹窗时间：</label>
+                                        <input id="setting_TipTime" type="text" value="10">
+                                        <div class="ui basic label">
+                                            s
+                                        </div>
+                                    </div>
+                                    <div id="setting_save" class="ui primary button">Save</div>
+                                </div>
                             </div>
                         </div>
                     </div>

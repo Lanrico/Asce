@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "test",
+    "version": "0.0.1",
+    "icons": {
+        "16": "img/icon.png",
+        "48": "img/icon.png",
+        "128": "img/icon.png"
+    },
+    "content_scripts": [{
+        "matches": ["https://*.bilibili.com/*"],
+        "js": ["js/jquery-3.6.0.js", "js/Achievement.js"],
+        "css": ["css/AchievementTip.css"],
+        "run_at": "document_start"
+    }],
+    "permissions": [
+        "storage"
+    ],
+    "web_accessible_resources": [{
+        "resources": ["img/*"],
+        "matches": ["https://*.bilibili.com/*"]
+    }]
+}
