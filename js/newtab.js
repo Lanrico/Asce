@@ -41,29 +41,30 @@ function buildNewtabDom(mostVisitedURLs) {
   setTimeout(function () {
     window.stop();
   }, 1000); //使新标签页不会因为网络问题加载太长时间占用网络资源，加载0.5s后停止
+
 }
 
 chrome.topSites.get(buildNewtabDom);
 
-$(function () {
-  $('img').bind("error", function () {
-    this.src = 'img/A-SOULlogo32.png';
-  });
+$(function() {
+    $('img').bind("error", function() {
+        this.src = 'img/A-SOULlogo32.png';
+    });
 });
 
 //用于控制baidu搜索
 function checkHttps() {
-  BaiduHttps.useHttps();
+    BaiduHttps.useHttps();
 };
 
 function baiduWithHttps(formname) {
-  var data = BaiduHttps.useHttps();
-  if (data.s === 0) {
-    return true;
-  } else {
-    formname.action = 'https://www.baidu.com/baidu' + '?ssl_s=1&ssl_c' + data.ssl_code;
-    return true;
-  }
+    var data = BaiduHttps.useHttps();
+    if (data.s === 0) {
+        return true;
+    } else {
+        formname.action = 'https://www.baidu.com/baidu' + '?ssl_s=1&ssl_c' + data.ssl_code;
+        return true;
+    }
 };
 
 //轮换背景图片，计划未来压缩插件体量可能换成网络标签，计划实现用户添加图片功能
@@ -188,3 +189,40 @@ $(function () {
     configPageStorageSet('main');
   });
 });
+
+
+    $("#setting_save").on("click", function() {
+        console.log("option in button")
+        option.showTip = $("#setting_showTip")[0].checked;
+        option.TipTime = $("#setting_TipTime")[0].value;
+
+        chrome.storage.sync.set({ 'option': option }, function() {
+            console.log(option)
+        })
+    })
+})
+
+var saveSettings = function() {
+    option.showTip = $("#setting_showTip")[0].checked;
+    option.TipTime = $("#setting_TipTime")[0].value;
+
+    chrome.storage.sync.set({ 'option': option }, function() {
+        console.log(option)
+    })
+}
+
+$("#setting_save").on("click", function() {
+    console.log("option in button")
+    option.showTip = $("#setting_showTip")[0].checked;
+    option.TipTime = $("#setting_TipTime")[0].value;
+
+    chrome.storage.sync.set({ 'option': option }, function() {
+        console.log(option)
+    })
+})
+
+var option = {
+    showTip: true,
+    TipTime: 10
+}
+
