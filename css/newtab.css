@@ -239,7 +239,7 @@ body {
 }
 
 
-#secondary_grid_main {
+.ui.grid.secondary_grid {
     padding: 0 5%;
 }
 
@@ -273,9 +273,34 @@ body {
     width: 100%;
 }
 
+#secondary_grid_checkLiveTime img {
+    width: 120%;
+}
+
+#secondary_grid_checkLiveTime .ui.radio.checkbox {
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+#secondary_grid_checkLiveTime .field {
+    display: flex;
+}
+
 
 #secondary_grid_main .ui.slider.checkbox.checked label:before {
     background-color: #E799B0!important;
+}
+
+#secondary_grid_checkLiveTime .ui.radio.checkbox input:focus:checked ~ label:after {
+    background-color: #576690 !important;
+}
+
+#secondary_grid_checkLiveTime .ui.radio.checkbox input:checked ~ label:after {
+    background-color: #576690 !important;
+}
+
+#secondary_grid_liveReminder .ui.slider.checkbox.checked label:before {
+    background-color: #B8A6D9!important;
 }
 
 .button_field {
@@ -285,9 +310,13 @@ body {
     margin-top: 4%;
 }
 
-.ui.pink.button {
+.ui.button {
     display: block;
     margin: 0 auto;
+}
+
+.ui.pink.button {
+
     background-color: #E799B0 !important;
 }
 
@@ -301,6 +330,22 @@ body {
 
 .ui.blue.button:hover {
     background-color: rgba(84, 167, 215, 0.9) !important;
+}
+
+.ui.black.button {
+    background-color: #576690 !important;
+}
+
+.ui.black.button:hover {
+    background-color: #404d6e !important;
+}
+
+.ui.violet.button {
+    background-color: #B8A6D9 !important;
+}
+
+.ui.violet.button:hover {
+    background-color: #a284db !important;
 }
 
 @media (max-height: 624px) and (max-width: 992px) {
@@ -338,6 +383,7 @@ body {
 
 #schedule {
     width: 100%;
+    margin: 8% auto;
 }
 
 #mostVisited_div {

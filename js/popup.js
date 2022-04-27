@@ -1,11 +1,11 @@
 $('.menu .item').tab();
 
 function initialPopup() {
-  chrome.storage.sync.get(['videoMark', 'favorites'], function (status) {
-    if (status.videoMark == true) {
+  chrome.storage.sync.get(['main_videoMark', 'main_favorites'], function (status) {
+    if (status.main_videoMark == true) {
       document.getElementById('videoMark_navi').className = 'item active';
       document.getElementById('videoMark_segment').className = 'ui bottom attached tab segment active';
-    } else if (status.favorites == true) {
+    } else if (status.main_favorites == true) {
       document.getElementById('favorites_navi').className = 'item active';
       document.getElementById('favorites_segment').className = 'ui bottom attached tab segment active';
     } else {
@@ -13,10 +13,10 @@ function initialPopup() {
       document.getElementById('noOne_navi').className = 'item active';
     }
 
-    if (status.videoMark == true) {
+    if (status.main_videoMark == true) {
       document.getElementById('videoMark_navi').setAttribute('style', 'display: flex;');
     } 
-    if (status.favorites == true) {
+    if (status.main_favorites == true) {
       document.getElementById('favorites_navi').setAttribute('style', 'display: flex;')
     }
   })

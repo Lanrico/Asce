@@ -49,9 +49,14 @@ function addDrawBox(allTheTimes) {
   var ul1 = document.createElement('ul');
   ul1.setAttribute('id', "theUl")
   ul1.setAttribute('class', 'dropdown-menu');
-  if(allTheTimes.length >= 14){
-    ul1.setAttribute('style', "height: 400px; overflow-y: scroll;");
-  }
+  chrome.storage.sync.get(['videoMark_singlePage'], function (status) {
+    height = 28.5 * status.videoMark_singlePage;
+    console.log("qweqweqwe"+height)
+    if(allTheTimes.length >= status.videoMark_singlePage){
+      ul1.setAttribute('style', "height: " + height + "px; overflow-y: scroll;");
+    }
+  })
+
   document.getElementById('theDropup').append(ul1);
 
 }

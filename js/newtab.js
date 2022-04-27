@@ -105,19 +105,36 @@ function changeButtonStatus(button_div) {
   var button_class = button_div.className;
   if (button_class == 'ui slider checkbox checked') {
     button_div.children[1].innerText = '开启';
-  } else {
+  } else if (button_class == 'ui slider checkbox') {
     button_div.children[1].innerText = '关闭';
   }
 };
 
 function changeInputByStorage(page, name, status) {
-  //chechbox类型的初始化
-  var checkbox = document.getElementById('checkbox_' + page + '_' + name);
+  
   if (status == true) {
+    var checkbox = document.getElementById('checkbox_' + name);
     checkbox.children[0].checked = true;
     checkbox.className = 'ui slider checkbox checked';
     changeButtonStatus(checkbox);
   }
+  if (typeof(status) == 'string') {
+    var regPos = /^\d+(\.\d+)?$/; //判断是否为非负浮点数
+    // if(status == 'full' || status == 'short'){
+    //   var checkbox = document.getElementById('checkbox_' + name.split('_')[0] + '_' + status);
+    //   numberbox.children[0].value = status;
+    // } 
+    
+    if (regPos.test(status)){
+      var numberbox = document.getElementById('number_' + name);
+      numberbox.children[0].value = status;
+    } else {
+      //单选框初始化
+      var checkbox = document.getElementById('checkbox_' + name.split('_')[0] + '_' + status);
+      checkbox.children[0].checked = true;
+    }
+  }
+
 }
 
 function configPageStorageGet(pageName, defaultOption) {
@@ -125,10 +142,18 @@ function configPageStorageGet(pageName, defaultOption) {
   for (var key in defaultOption) {
     optionList.push(key);
   }
+  console.log(optionList)
   chrome.storage.sync.get(optionList, function (main) {
     if (main[optionList[0]] == undefined) {
       chrome.storage.sync.set(defaultOption);
+      if (optionList[0].split('_')[0] == 'main'){
+        document.getElementById('liveTime_navi').setAttribute('style', 'display: flex;');
+        document.getElementById('achievement_navi').setAttribute('style', 'display: flex;');
+        document.getElementById('favorites_navi').setAttribute('style', 'display: flex;');
+        document.getElementById('live2D_container').setAttribute('style', 'display: flex;');
+      }
       for (let i = 0; i < optionList.length; i++) {
+        
         changeInputByStorage(pageName, optionList[i], defaultOption[optionList[i]]);
       }
     } else {
@@ -141,41 +166,73 @@ function configPageStorageGet(pageName, defaultOption) {
 
 function configPageStorageSet(pageName) {
   var inputList = document.getElementById('secondary_grid_' + pageName).getElementsByTagName('input');
+  // console.log('secondary_grid_' + pageName)
+  console.log(inputList)
+
   var inputDictionary = {};
   for (let i = 0; i < inputList.length; i++) {
     if (inputList[i].type == 'checkbox') {
-      inputDictionary[inputList[i].parentElement.id.split('_')[2]] = inputList[i].checked;
+      inputDictionary[inputList[i].parentElement.id.split('_')[1] +'_' + inputList[i].parentElement.id.split('_')[2]] = inputList[i].checked;
+    }
+    if (inputList[i].type == 'number') {
+      inputDictionary[inputList[i].parentElement.id.split('_')[1] +'_' + inputList[i].parentElement.id.split('_')[2]] = inputList[i].value;
+    }
+    
+    if (inputList[i].type == 'radio') {
+      if (inputList[i].parentElement.className == 'ui radio checkbox checked'){
+        inputDictionary[inputList[i].parentElement.id.split('_')[1] +'_radio'] = inputList[i].parentElement.id.split('_')[2];
+      }
     }
   }
   chrome.storage.sync.set(inputDictionary);
 }
 
 function initialNewtab() {
-  chrome.storage.sync.get(['checkLiveTime', 'achievement', 'favorites', 'live2D'], function (status) {
-    if (status.checkLiveTime == true) {
+  chrome.storage.sync.get(['main_checkLiveTime', 'main_achievement', 'main_favorites', 'main_live2D', 'checkLiveTime_radio'], function (status) {
+    if (status.main_checkLiveTime == true) {
       document.getElementById('liveTime_navi').setAttribute('style', 'display: flex;')
     }
-    if (status.achievement == true) {
+    if (status.main_achievement == true) {
       document.getElementById('achievement_navi').setAttribute('style', 'display: flex;')
     }
-    if (status.favorites == true) {
+    if (status.main_favorites == true) {
       document.getElementById('favorites_navi').setAttribute('style', 'display: flex;')
     }
-    if (status.live2D == true) {
-      console.log(document.getElementById('live2D_container'));
+    if (status.main_live2D == true) {
       document.getElementById('live2D_container').setAttribute('style', 'display: block;')
+    }
+    if (status.checkLiveTime_radio == 'full'){
+      document.getElementById('schedule').setAttribute('src', 'http://1.116.119.249/Asce/Schedule_full.png')
+      document.getElementById('schedule').setAttribute('style', 'height: 100%; width: auto; margin: auto; display: block;')
     }
   })
 }
 
 $(function () {
   configPageStorageGet('main', {
-    'videoMark': true,
-    'checkLiveTime': true,
-    'liveReminder': true,
-    'achievement': true,
-    'favorites': true,
-    'live2D': true
+    'main_videoMark': true,
+    'main_checkLiveTime': true,
+    'main_liveReminder': true,
+    'main_achievement': true,
+    'main_favorites': true,
+    'main_live2D': true
+  });
+
+  configPageStorageGet('videoMark', {
+    'videoMark_singlePage': 16,
+  });
+
+  configPageStorageGet('checkLiveTime', {
+    'checkLiveTime_radio': 'short',
+  });
+  
+  configPageStorageGet('liveReminder', {
+    'liveReminder_Diana': true,
+    'liveReminder_Ava': true,
+    'liveReminder_Eileen': true,
+    'liveReminder_Carol': true,
+    'liveReminder_Bella': true,
+    'liveReminder_Official': true
   });
   initialNewtab();
 });
@@ -187,6 +244,15 @@ $(function () {
 
   $('#main_submit').click(function () {
     configPageStorageSet('main');
+  });
+  $('#videoMark_submit').click(function () {
+    configPageStorageSet('videoMark');
+  });
+  $('#checkLiveTime_submit').click(function () {
+    configPageStorageSet('checkLiveTime');
+  });
+  $('#liveReminder_submit').click(function () {
+    configPageStorageSet('liveReminder');
   });
 });
 
