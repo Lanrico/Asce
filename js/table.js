@@ -192,7 +192,7 @@ function showFoot(currentPage, totalPage) {
   // footStr += "<a class=\"icon item\"><i class=\"left chevron icon\"></i></a>";
   footStr += `<a class="item pgn" pgn="1">1</a>`;
   footStr += `<a class="item more left">...</a>`;
-  if (totalPage > 2) {
+  if (totalPage >= 2) {
     for (var x = 2; x < totalPage; x++) {
       footStr += `<a class="item pgn" pgn=${x}>${x}</a>`;
     }
