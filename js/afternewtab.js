@@ -7,16 +7,23 @@ $('.ui.checkbox').checkbox();
 $('#achievement_progress_clip').progress("set percent", 45)
 $('#achievement_progress_alive').progress("set percent", 65)
 
+//成就的各个时间阶段
 var achievementTime = [0, 1, 2, 3, 5, 8, 10]
+//所有的成就类型
 var achievementType = ["alive", "clip", "Diana", "Eileen", "Bella", "Ava", "Carol", "niubi"]
 
+//设置成就页面
+//遍历每一种成就
 achievementType.forEach(type => {
     var ms = "minute_" + type;
     var hs = "hour_" + type;
+
+    //从chrome.storage中获取当前成就的时间
     chrome.storage.sync.get([ms, hs], function(res) {
         var m = res[ms];
         var h = res[hs];
         
+        //如果第一次使用此插件，将时间显示为0
         if(m == undefined){
             m = 0
         }
@@ -24,7 +31,9 @@ achievementType.forEach(type => {
             h = 0;
         }
 
+        //到达下一阶段的时间
         var htop = 0;
+        //上一阶段的时间
         var hbom = 0;
         for (var i = 0; i < achievementTime.length; i++) {
             if (h < achievementTime[i]) {
@@ -34,9 +43,12 @@ achievementType.forEach(type => {
             }
         }
 
+        //显示具体时间
         $("#achievement_time_" + type).html(h + "h " + m + "min / " + htop + "h")
 
+        //计算从上一阶段到下一阶段的百分比
         var per = (((h - hbom) * 60 + m) / ((htop - hbom) * 60)) * 100
+        //通过进度条显示百分比
         $("#achievement_progress_" + type).progress("set percent", per)
 
         console.log(type)

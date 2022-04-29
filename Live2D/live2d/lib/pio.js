@@ -43,11 +43,9 @@ var Paul_Pio = function (prop) {
         render: function (text) {
             if (text.constructor === Array) {
                 dialog.innerHTML = modules.rand(text);
-            }
-            else if (text.constructor === String) {
+            } else if (text.constructor === String) {
                 dialog.innerHTML = text;
-            }
-            else {
+            } else {
                 dialog.innerHTML = "输入内容出现问题了 X_X";
             }
 
@@ -75,16 +73,30 @@ var Paul_Pio = function (prop) {
     this.destroy = modules.destroy;
 
     var elements = {
-        home: modules.create("span", { class: "pio-home" }),
-        skin: modules.create("span", { class: "pio-skin" }),
-        info: modules.create("span", { class: "pio-info" }),
-        night: modules.create("span", { class: "pio-night" }),
-        close: modules.create("span", { class: "pio-close" }),
+        home: modules.create("span", {
+            class: "pio-home"
+        }),
+        skin: modules.create("span", {
+            class: "pio-skin"
+        }),
+        info: modules.create("span", {
+            class: "pio-info"
+        }),
+        night: modules.create("span", {
+            class: "pio-night"
+        }),
+        close: modules.create("span", {
+            class: "pio-close"
+        }),
 
-        show: modules.create("div", { class: "pio-show" })
+        show: modules.create("div", {
+            class: "pio-show"
+        })
     };
 
-    var dialog = modules.create("div", { class: "pio-dialog" });
+    var dialog = modules.create("div", {
+        class: "pio-dialog"
+    });
     current.body.appendChild(dialog);
     current.body.appendChild(elements.show);
 
@@ -96,41 +108,31 @@ var Paul_Pio = function (prop) {
                 var referrer = document.createElement('a');
                 referrer.href = document.referrer;
                 prop.content.referer ? modules.render(prop.content.referer.replace(/%t/, "“" + referrer.hostname + "”")) : modules.render("欢迎来自 “" + referrer.hostname + "” 的朋友！");
-            }
-            else if (prop.tips) {
+            } else if (prop.tips) {
                 var text, hour = new Date().getHours();
 
                 if (hour > 22 || hour <= 5) {
                     text = '你是夜猫子呀？这么晚还不睡觉，明天起的来嘛';
-                }
-                else if (hour > 5 && hour <= 8) {
+                } else if (hour > 5 && hour <= 8) {
                     text = '早上好！';
-                }
-                else if (hour > 8 && hour <= 11) {
+                } else if (hour > 8 && hour <= 11) {
                     text = '上午好！工作顺利嘛，不要久坐，多起来走动走动哦！';
-                }
-                else if (hour > 11 && hour <= 14) {
+                } else if (hour > 11 && hour <= 14) {
                     text = '中午了，工作了一个上午，现在是午餐时间！';
-                }
-                else if (hour > 14 && hour <= 17) {
+                } else if (hour > 14 && hour <= 17) {
                     text = '午后很容易犯困呢，今天的运动目标完成了吗？';
-                }
-                else if (hour > 17 && hour <= 19) {
+                } else if (hour > 17 && hour <= 19) {
                     text = '傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~';
-                }
-                else if (hour > 19 && hour <= 21) {
+                } else if (hour > 19 && hour <= 21) {
                     text = '晚上好，今天过得怎么样？';
-                }
-                else if (hour > 21 && hour <= 23) {
+                } else if (hour > 21 && hour <= 23) {
                     text = '已经这么晚了呀，早点休息吧，晚安~';
-                }
-                else {
+                } else {
                     text = "奇趣保罗说：这个是无法被触发的吧，哈哈";
                 }
 
                 modules.render(text);
-            }
-            else {
+            } else {
                 modules.render(prop.content.welcome || "欢迎来到本站！");
             }
         },
@@ -203,13 +205,11 @@ var Paul_Pio = function (prop) {
                             e[j].onmouseover = function () {
                                 modules.render("想阅读 %t 吗？".replace(/%t/, "“" + this.innerText + "”"));
                             }
-                        }
-                        else if (t.type === "link") {
+                        } else if (t.type === "link") {
                             e[j].onmouseover = function () {
                                 modules.render("想了解一下 %t 吗？".replace(/%t/, "“" + this.innerText + "”"));
                             }
-                        }
-                        else if (t.text) {
+                        } else if (t.text) {
                             e[j].onmouseover = function () {
                                 modules.render(t.text);
                             }
@@ -226,10 +226,12 @@ var Paul_Pio = function (prop) {
             current.body.classList.add("static");
         },
         fixed: function () {
-            action.touch(); action.buttons();
+            action.touch();
+            action.buttons();
         },
         draggable: function () {
-            action.touch(); action.buttons();
+            action.touch();
+            action.buttons();
 
             var body = current.body;
             body.onmousedown = function (downEvent) {
@@ -260,15 +262,31 @@ var Paul_Pio = function (prop) {
         if (!(prop.hidden && modules.isMobile())) {
             if (!onlyText) {
                 action.welcome();
-                that.model = loadlive2d("pio", prop.model[0], model => {
-                    prop.onModelLoad && prop.onModelLoad(model)
+                chrome.storage.sync.get('live2D_model', function (status) {
+                    if (status.live2D_model) {
+                        that.model = loadlive2d("pio", prop.model[1], model => {
+                            prop.onModelLoad && prop.onModelLoad(model)
+                        });
+                    } else {
+                        that.model = loadlive2d("pio", prop.model[0], model => {
+                            prop.onModelLoad && prop.onModelLoad(model)
+                        });
+                    }
                 });
+
+
             }
 
             switch (prop.mode) {
-                case "static": begin.static(); break;
-                case "fixed": begin.fixed(); break;
-                case "draggable": begin.draggable(); break;
+                case "static":
+                    begin.static();
+                    break;
+                case "fixed":
+                    begin.fixed();
+                    break;
+                case "draggable":
+                    begin.draggable();
+                    break;
             }
 
             if (prop.content.custom) action.custom();

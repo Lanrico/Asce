@@ -1,8 +1,9 @@
 $(document).on("click", function() {
     showTip()
-    chrome.storage.sync.get(["minute_clip"], function(result) {
-        console.log("minute_clip: " + result.minute_clip)
+    chrome.storage.sync.get(["minute_alive"], function(result) {
+        console.log("minute_alive: " + result.minute_alive)
     })
+    console.log(official)
 
     // var s = window.location.href
     // var s2 = s.split("?")[0]
@@ -21,7 +22,7 @@ $(document).on("click", function() {
 
 //页面加载完成执行
 $(function() {
-    loadJson()
+    // loadJson()
     setSettings()
     init_storage()
     generateTip()
@@ -75,40 +76,40 @@ var isPlay = function() {
     return !vdo.paused
 }
 
-//根据不同类型的视频或者直播，将对应类型观看小时数储存到浏览器中
-var setHour_storage = function(hour_set) {
-    var str = 'hour_' + storageType;
-    chrome.storage.sync.set({
-        [str]: hour_set
-    })
-}
+// //根据不同类型的视频或者直播，将对应类型观看小时数储存到浏览器中
+// var setHour_storage = function(hour_set) {
+//     var str = 'hour_' + storageType;
+//     chrome.storage.sync.set({
+//         [str]: hour_set
+//     })
+// }
 
-//根据不同类型的视频或者直播，将对应类型观看分钟数储存到浏览器中
-var setMinute_storage = function(minute_set) {
-    var str = 'minute_' + storageType;
-    chrome.storage.sync.set({
-        [str]: minute_set
-    })
-}
+// //根据不同类型的视频或者直播，将对应类型观看分钟数储存到浏览器中
+// var setMinute_storage = function(minute_set) {
+//     var str = 'minute_' + storageType;
+//     chrome.storage.sync.set({
+//         [str]: minute_set
+//     })
+// }
 
-//将minute_temp和hour_temp设置为浏览器中已储存的对应类型的小时数和分钟数
-var setMinuteAndHour_temp = function() {
-    var m = 'minute_' + storageType;
-    var h = 'hour_' + storageType;
+// //将minute_temp和hour_temp设置为浏览器中已储存的对应类型的小时数和分钟数
+// var setMinuteAndHour_temp = function() {
+//     var m = 'minute_' + storageType;
+//     var h = 'hour_' + storageType;
 
-    chrome.storage.sync.get([m, h], function(result) {
-        if (result[m] == undefined) {
-            minute_temp == 0;
-        } else {
-            minute_temp = result[m];
-        }
-        if (result[h] == undefined) {
-            hour_temp == 0;
-        } else {
-            hour_temp = result[h];
-        }
-    })
-}
+//     chrome.storage.sync.get([m, h], function(result) {
+//         if (result[m] == undefined) {
+//             minute_temp == 0;
+//         } else {
+//             minute_temp = result[m];
+//         }
+//         if (result[h] == undefined) {
+//             hour_temp == 0;
+//         } else {
+//             hour_temp = result[h];
+//         }
+//     })
+// }
 
 //根据当前页面类型，为每种类型各加1min
 var addMinute_storage = function() {
@@ -133,6 +134,7 @@ var addMinute_storage = function() {
     })
 }
 
+//如果是第一次使用此插件，将chrome.storage中成就时间设为0
 var init_storage = function() {
     var temp = []
     AchievementType_all.forEach(ele => {
@@ -220,11 +222,12 @@ var isClip = function() {
     return x && video;
 }
 
+//当前页面是否时官号直播
 var isAlive = function() {
     return official && live;
-
 }
 
+//根据视频标签判断当前页面是否是嘉然二创
 var isDiana = function() {
     var x = tags.includes("嘉然") || tags.includes("Diana") || tags.includes("嘉然今天吃什么");
     return x && video
@@ -251,6 +254,7 @@ var isCarol = function() {
     return x && video
 }
 
+//当前视频的标签是否有“勇敢牛牛”
 var isNiubi = function() {
     var x = tags.includes("勇敢牛牛")
     return x && video
@@ -281,18 +285,17 @@ var init_alive = function() {
     }, 5000)
 }
 
-//对A-Soul相关视频页面进行初始化
-var init_clip = function() {
-    //将储存类型设置为clip
-    storageType = "clip"
-    author = getAuthor_video();
-    timer = true;
-}
+// //对A-Soul相关视频页面进行初始化
+// var init_clip = function() {
+//     //将储存类型设置为clip
+//     storageType = "clip"
+//     author = getAuthor_video();
+//     timer = true;
+// }
 
 //初始化
 var init = function() {
     setLiveAndVideo();
-    setOfficial();
 
     //如果是视频的话，获取它的标签
     if (video) {
@@ -344,6 +347,7 @@ var init_video = function() {
         .then(response => response.json())
         .then(function(json) {
             mid = json.data.owner.mid
+            setOfficial();
             init_AchievementType()
         })
 }
@@ -357,6 +361,7 @@ var init_live = function() {
         .then(response => response.json())
         .then(function(json) {
             mid = json.data.uid
+            setOfficial()
             init_AchievementType()
         })
 
@@ -406,7 +411,7 @@ var setAchievementType = function() {
 
 //如果当前时间有对应的成就的话，显示成就弹窗
 var showTip = function() {
-    //遍历所有成就
+    //遍历当前页面所有成就类型
     AchievementType.forEach(function(ele) {
         // if (AchievementType.includes(ele.type) && ele.hour == hour_temp && ele.minute == ) {
         //     ach = ele;
@@ -420,6 +425,7 @@ var showTip = function() {
             var m = result[ms];
             var h = result[hs];
 
+            //如果当前时间完成了一个阶段并且设置中启用了成就弹窗
             if (achievementTime.includes(h) && showTip_setting) {
                 // //如果没有或者设置了不显示，直接结束
                 // if (!ach || !showTip_setting) {
@@ -444,7 +450,7 @@ var showTip = function() {
                 //淡入显示成就弹窗
                 $("#tip-div").fadeIn()
 
-                //10秒后淡出成就弹窗
+                //根据设置的时间淡出成就弹窗
                 setTimeout(function() {
                     if ($("#tip-div").css("display") != "none") {
                         $("#tip-div").fadeOut()
@@ -455,6 +461,7 @@ var showTip = function() {
     })
 }
 
+//根据成就类型为成就弹窗设置背景颜色和图片
 function setTipDesign(type) {
     if (!Object.keys(TipDesign).includes(type)) {
         type = Object.keys(TipDesign)[Math.floor(Math.random() * 5)]
@@ -495,7 +502,7 @@ var generateTip = function() {
     //设置关闭按钮
     var close = document.createElement("div");
     close.id = "tip-close";
-    close.className = "tip-close";
+    close.className = "tip-close ";
     close.style.backgroundImage = "url(" + chrome.runtime.getURL("/img/close.png") + ")"
     div.appendChild(close)
 
@@ -508,29 +515,30 @@ var generateTip = function() {
     })
 }
 
-//加载json文件
-var loadJson = function() {
-    //获取成就信息
-    fetch(chrome.runtime.getURL("/json/Achievement.json"))
-        .then(response => response.json())
-        .then(function(json) {
-            achievement = json;
-        })
+// //加载json文件
+// var loadJson = function() {
+//     //获取成就信息
+//     fetch(chrome.runtime.getURL("/json/Achievement.json"))
+//         .then(response => response.json())
+//         .then(function(json) {
+//             achievement = json;
+//         })
 
-    // //获取设置信息
-    // fetch(chrome.runtime.getURL("/json/Setting.json"))
-    //     .then(response => response.json())
-    //     .then(function(json) {
-    //         TipTime_setting = json.TipTime_setting;
-    //         showTip_setting = json.showTip_setting;
-    //     })
-}
+//     //获取设置信息
+//     fetch(chrome.runtime.getURL("/json/Setting.json"))
+//         .then(response => response.json())
+//         .then(function(json) {
+//             TipTime_setting = json.TipTime_setting;
+//             showTip_setting = json.showTip_setting;
+//         })
+// }
 
+//获取设置
 var setSettings = function() {
-    chrome.storage.sync.get(["option"], function(res) {
-        if (res.option != undefined) {
-            var st = res.option.showTip
-            var tt = res.option.TipTime
+    chrome.storage.sync.get(['achievement_popup', 'achievement_popupTime'], function(res) {
+        if (res.achievement_popup != undefined) {
+            var st = res.achievement_popup
+            var tt = res.achievement_popupTime
             TipTime_setting = tt;
             showTip_setting = st;
         }
@@ -560,7 +568,7 @@ var official = false;
 var onlive = false;
 
 //储存类型live、clip
-var storageType = ""
+// var storageType = ""
 var AchievementType = []
 
 //当前页面up主b站id
@@ -615,8 +623,10 @@ var tip_img = [{
 //所有种类的成就
 var AchievementType_all = ["alive", "clip", "Diana", "Eileen", "Bella", "Ava", "Carol", "niubi"]
 
-var achievementTime = [1, 2, 3, 5, 8, 10]
+//成就时间
+var achievementTime = [0, 1, 2, 3, 5, 8, 10]
 
+//成就弹窗的背景颜色以及图片
 var TipDesign = {
     "Diana": {
         color: "rgb(231, 153, 176)",

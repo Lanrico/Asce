@@ -46,25 +46,28 @@ function buildNewtabDom(mostVisitedURLs) {
 
 chrome.topSites.get(buildNewtabDom);
 
-$(function() {
-    $('img').bind("error", function() {
-        this.src = 'img/A-SOULlogo32.png';
-    });
+$(function () {
+  $('img').bind("error", function () {
+    this.src = 'img/A-SOULlogo32.png';
+  });
+  $('#schedule img').bind("error", function () {
+    this.src = 'img/checkLiveTime_error.png';
+  });
 });
 
 //用于控制baidu搜索
 function checkHttps() {
-    BaiduHttps.useHttps();
+  BaiduHttps.useHttps();
 };
 
 function baiduWithHttps(formname) {
-    var data = BaiduHttps.useHttps();
-    if (data.s === 0) {
-        return true;
-    } else {
-        formname.action = 'https://www.baidu.com/baidu' + '?ssl_s=1&ssl_c' + data.ssl_code;
-        return true;
-    }
+  var data = BaiduHttps.useHttps();
+  if (data.s === 0) {
+    return true;
+  } else {
+    formname.action = 'https://www.baidu.com/baidu' + '?ssl_s=1&ssl_c' + data.ssl_code;
+    return true;
+  }
 };
 
 //轮换背景图片，计划未来压缩插件体量可能换成网络标签，计划实现用户添加图片功能
@@ -107,29 +110,37 @@ function changeButtonStatus(button_div) {
     button_div.children[1].innerText = '开启';
   } else if (button_class == 'ui slider checkbox') {
     button_div.children[1].innerText = '关闭';
+  } else if (button_class == 'ui slider checkbox live2D checked') {
+    button_div.children[1].innerText = '向晚';
+  } else if (button_class == 'ui slider checkbox live2D') {
+    button_div.children[1].innerText = '嘉然';
   }
 };
 
 function changeInputByStorage(page, name, status) {
-  
+  console.log(name + ' ' + status + ' ')
   if (status == true) {
-    var checkbox = document.getElementById('checkbox_' + name);
-    checkbox.children[0].checked = true;
-    checkbox.className = 'ui slider checkbox checked';
-    changeButtonStatus(checkbox);
+    try {
+      var checkbox = document.getElementById('checkbox_' + name);
+      checkbox.children[0].checked = true;
+      checkbox.className = checkbox.className + ' checked';
+      changeButtonStatus(checkbox);    
+    } catch (error) {
+      console.log('checkbox_' + name)
+    }
+
   }
-  if (typeof(status) == 'string') {
+
+  if (typeof (status) == 'string') {
     var regPos = /^\d+(\.\d+)?$/; //判断是否为非负浮点数
-    // if(status == 'full' || status == 'short'){
-    //   var checkbox = document.getElementById('checkbox_' + name.split('_')[0] + '_' + status);
-    //   numberbox.children[0].value = status;
-    // } 
-    
-    if (regPos.test(status)){
+    var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;
+    if (regPos.test(status)) {
       var numberbox = document.getElementById('number_' + name);
       numberbox.children[0].value = status;
+      console.log('number_' + name)
     } else {
       //单选框初始化
+      console.log('checkbox_' + name.split('_')[0] + '_' + status)
       var checkbox = document.getElementById('checkbox_' + name.split('_')[0] + '_' + status);
       checkbox.children[0].checked = true;
     }
@@ -142,18 +153,16 @@ function configPageStorageGet(pageName, defaultOption) {
   for (var key in defaultOption) {
     optionList.push(key);
   }
-  console.log(optionList)
   chrome.storage.sync.get(optionList, function (main) {
     if (main[optionList[0]] == undefined) {
       chrome.storage.sync.set(defaultOption);
-      if (optionList[0].split('_')[0] == 'main'){
+      if (optionList[0].split('_')[0] == 'main') {
         document.getElementById('liveTime_navi').setAttribute('style', 'display: flex;');
         document.getElementById('achievement_navi').setAttribute('style', 'display: flex;');
         document.getElementById('favorites_navi').setAttribute('style', 'display: flex;');
         document.getElementById('live2D_container').setAttribute('style', 'display: flex;');
       }
       for (let i = 0; i < optionList.length; i++) {
-        
         changeInputByStorage(pageName, optionList[i], defaultOption[optionList[i]]);
       }
     } else {
@@ -166,45 +175,65 @@ function configPageStorageGet(pageName, defaultOption) {
 
 function configPageStorageSet(pageName) {
   var inputList = document.getElementById('secondary_grid_' + pageName).getElementsByTagName('input');
-  // console.log('secondary_grid_' + pageName)
-  console.log(inputList)
-
   var inputDictionary = {};
   for (let i = 0; i < inputList.length; i++) {
     if (inputList[i].type == 'checkbox') {
-      inputDictionary[inputList[i].parentElement.id.split('_')[1] +'_' + inputList[i].parentElement.id.split('_')[2]] = inputList[i].checked;
+      inputDictionary[inputList[i].parentElement.id.split('_')[1] + '_' + inputList[i].parentElement.id.split('_')[2]] = inputList[i].checked;
     }
     if (inputList[i].type == 'number') {
-      inputDictionary[inputList[i].parentElement.id.split('_')[1] +'_' + inputList[i].parentElement.id.split('_')[2]] = inputList[i].value;
-    }
-    
-    if (inputList[i].type == 'radio') {
-      if (inputList[i].parentElement.className == 'ui radio checkbox checked'){
-        inputDictionary[inputList[i].parentElement.id.split('_')[1] +'_radio'] = inputList[i].parentElement.id.split('_')[2];
+      if (inputList[i].value < 2) {
+        inputDictionary[inputList[i].parentElement.id.split('_')[1] + '_' + inputList[i].parentElement.id.split('_')[2]] = '2';
+      } else {
+        inputDictionary[inputList[i].parentElement.id.split('_')[1] + '_' + inputList[i].parentElement.id.split('_')[2]] = inputList[i].value;
       }
     }
+
+    if (inputList[i].type == 'radio') {
+      if (inputList[i].parentElement.className == 'ui radio checkbox checked') {
+        inputDictionary[inputList[i].parentElement.id.split('_')[1] + '_radio'] = inputList[i].parentElement.id.split('_')[2];
+        console.log(inputDictionary)
+      }
+    }
+    if (inputList[i].type == 'text') {
+      if (inputList[i].value == '终极') {
+        inputDictionary[inputList[i].parentElement.id.split('_')[1] + '_' + inputList[i].parentElement.id.split('_')[2]] = true;
+      } else if (inputList[i].value == '第三次') {
+        inputDictionary[inputList[i].parentElement.id.split('_')[1] + '_' + inputList[i].parentElement.id.split('_')[2]] = false;
+      }
+    }
+
   }
+  console.log(inputDictionary)
   chrome.storage.sync.set(inputDictionary);
 }
 
 function initialNewtab() {
-  chrome.storage.sync.get(['main_checkLiveTime', 'main_achievement', 'main_favorites', 'main_live2D', 'checkLiveTime_radio'], function (status) {
-    if (status.main_checkLiveTime == true) {
-      document.getElementById('liveTime_navi').setAttribute('style', 'display: flex;')
+  chrome.storage.sync.get(['main_checkLiveTime', 'main_achievement', 'main_favorites', 'main_live2D', 'checkLiveTime_radio', 'achievement_YGNN', 'live2D_radio'], function (status) {
+    if (status.main_checkLiveTime) {
+      document.getElementById('liveTime_navi').setAttribute('style', 'display: flex;');
     }
-    if (status.main_achievement == true) {
-      document.getElementById('achievement_navi').setAttribute('style', 'display: flex;')
+    if (status.main_achievement) {
+      document.getElementById('achievement_navi').setAttribute('style', 'display: flex;');
     }
-    if (status.main_favorites == true) {
-      document.getElementById('favorites_navi').setAttribute('style', 'display: flex;')
+    if (status.main_favorites) {
+      document.getElementById('favorites_navi').setAttribute('style', 'display: flex;');
     }
-    if (status.main_live2D == true) {
-      document.getElementById('live2D_container').setAttribute('style', 'display: block;')
+    if (status.checkLiveTime_radio == 'full') {
+      document.getElementById('schedule').setAttribute('src', 'http://1.116.119.249/Asce/Schedule_full.png');
+      document.getElementById('schedule').setAttribute('style', 'height: 100%; width: auto; margin: auto; display: block;');
     }
-    if (status.checkLiveTime_radio == 'full'){
-      document.getElementById('schedule').setAttribute('src', 'http://1.116.119.249/Asce/Schedule_full.png')
-      document.getElementById('schedule').setAttribute('style', 'height: 100%; width: auto; margin: auto; display: block;')
+    if (status.achievement_YGNN) {
+      document.getElementById('achievement_niubi').setAttribute('style', 'display: block;');
     }
+    if (status.main_live2D) {
+      switch (status.live2D_radio) {
+        case 'left-top': document.getElementById('live2D_container').setAttribute('style', 'left: 0; top: 30px; display: block');break;
+        case 'left-bottom': document.getElementById('live2D_container').setAttribute('style', 'left: 0; bottom: 5px; display: block');break;
+        case 'right-top': document.getElementById('live2D_container').setAttribute('style', 'right: 0; top: 30px; display: block');break;
+        case 'right-bottom': document.getElementById('live2D_container').setAttribute('style', 'right: 0; bottom: 5px; display: block');break;
+      }
+    }
+
   })
 }
 
@@ -219,13 +248,13 @@ $(function () {
   });
 
   configPageStorageGet('videoMark', {
-    'videoMark_singlePage': 16,
+    'videoMark_singlePage': '16',
   });
 
   configPageStorageGet('checkLiveTime', {
     'checkLiveTime_radio': 'short',
   });
-  
+
   configPageStorageGet('liveReminder', {
     'liveReminder_Diana': true,
     'liveReminder_Ava': true,
@@ -233,6 +262,17 @@ $(function () {
     'liveReminder_Carol': true,
     'liveReminder_Bella': true,
     'liveReminder_Official': true
+  });
+
+  configPageStorageGet('achievement', {
+    'achievement_popup': true,
+    'achievement_popupTime': '10',
+    'achievement_YGNN': false
+  });
+  configPageStorageGet('live2D', {
+    'live2D_model': false,
+    'live2D_draggable': true,
+    'live2D_radio': 'left-top'
   });
   initialNewtab();
 });
@@ -254,39 +294,10 @@ $(function () {
   $('#liveReminder_submit').click(function () {
     configPageStorageSet('liveReminder');
   });
+  $('#achievement_submit').click(function () {
+    configPageStorageSet('achievement');
+  });
+  $('#live2D_submit').click(function () {
+    configPageStorageSet('live2D');
+  });
 });
-
-$("#setting_save").on("click", function() {
-    console.log("option in button")
-    option.showTip = $("#setting_showTip")[0].checked;
-    option.TipTime = $("#setting_TipTime")[0].value;
-
-    chrome.storage.sync.set({ 'option': option }, function() {
-        console.log(option)
-    })
-})
-
-var saveSettings = function() {
-    option.showTip = $("#setting_showTip")[0].checked;
-    option.TipTime = $("#setting_TipTime")[0].value;
-
-    chrome.storage.sync.set({ 'option': option }, function() {
-        console.log(option)
-    })
-}
-
-$("#setting_save").on("click", function() {
-    console.log("option in button")
-    option.showTip = $("#setting_showTip")[0].checked;
-    option.TipTime = $("#setting_TipTime")[0].value;
-
-    chrome.storage.sync.set({ 'option': option }, function() {
-        console.log(option)
-    })
-})
-
-var option = {
-    showTip: true,
-    TipTime: 10
-}
-

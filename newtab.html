@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col">
                 </div>
-                <div id="middle_col" style="width:1000px">
+                <div id="middle_col" style="width:80%">
                     <div class="margin_container">
                         <form id="search_bar" class="ui right action left icon input"
                             action="http://www.baidu.com/baidu">
@@ -53,9 +53,9 @@
                                 <a class="item active" data-tab="mostVisited" id="mostVisited_navi">常用网站</a>
                                 <a class="item" data-tab="liveTime" id="liveTime_navi" style="display: none;">直播时间</a>
                                 <a class="item" data-tab="achievement" id="achievement_navi"
-                                    style="display: none;">成就</a>
+                                    style="display: none;">统计</a>
                                 <a class="item" data-tab="favorites" id="favorites_navi" style="display: none;">收藏夹</a>
-                                <a class="right item" data-tab="selection">插件设置 </a>
+                                <a class="right item" data-tab="selection">设置 </a>
                             </div>
                             <div class="ui bottom attached tab segment active" data-tab="mostVisited">
                                 <div class="main_function_secondary_container">
@@ -100,7 +100,7 @@
                                     <div id="achievement_Diana" class="achievement-container ui segment">
                                         <div class="achievement-icon">
                                             <img id="achievement_icon_Diana"
-                                                src="https://i2.hdslb.com/bfs/face/d399d6f5cf7943a996ae96999ba3e6ae2a2988de.jpg@240w_240h_1c_1s.webp"
+                                                src="img/Icon_Diana.webp"
                                                 width="50px" height="50px">
                                         </div>
                                         <div id="achievement_time_Diana" class="achievement-title-piecemeal">
@@ -115,7 +115,7 @@
                                     <div id="achievement_Eileen" class="achievement-container ui segment">
                                         <div id="achievement_icon_Eileen" class="achievement-icon">
                                             <img id="achievement_icon_Eileen"
-                                                src="https://i1.hdslb.com/bfs/face/8895c87082beba1355ea4bc7f91f2786ef49e354.jpg@240w_240h_1c_1s.webp"
+                                                src="img/Icon_Eileen.webp"
                                                 width="50px" height="50px">
                                         </div>
                                         <div id="achievement_time_Eileen" class="achievement-title-piecemeal">
@@ -130,7 +130,7 @@
                                     <div id="achievement_Bella" class="achievement-container ui segment">
                                         <div id="achievement_icon_Bella" class="achievement-icon">
                                             <img id="achievement_icon_Bella"
-                                                src="https://i2.hdslb.com/bfs/face/668af440f8a8065743d3fa79cfa8f017905d0065.jpg@240w_240h_1c_1s.webp"
+                                                src="img/Icon_Bella.webp"
                                                 width="50px" height="50px">
                                         </div>
                                         <div id="achievement_time_Bella" class="achievement-title-piecemeal">
@@ -145,7 +145,7 @@
                                     <div id="achievement_Ava" class="achievement-container ui segment">
                                         <div id="achievement_icon_Ava" class="achievement-icon">
                                             <img id="achievement_icon_Ava"
-                                                src="https://i0.hdslb.com/bfs/face/566078c52b408571d8ae5e3bcdf57b2283024c27.jpg@240w_240h_1c_1s.webp"
+                                                src="img/Icon_Ava.webp"
                                                 width="50px" height="50px">
                                         </div>
                                         <div id="achievement_time_Ava" class="achievement-title-piecemeal">
@@ -160,7 +160,7 @@
                                     <div id="achievement_Carol" class="achievement-container ui segment">
                                         <div id="achievement_icon_Carol" class="achievement-icon">
                                             <img id="achievement_icon_Carol"
-                                                src="https://i1.hdslb.com/bfs/face/a7fea00016a8d3ffb015b6ed8647cc3ed89cbc63.jpg@240w_240h_1c_1s.webp"
+                                                src="img/Icon_Carol.webp"
                                                 width="50px" height="50px">
                                         </div>
                                         <div id="achievement_time_Carol" class="achievement-title-piecemeal">
@@ -174,7 +174,7 @@
                                     </div>
                                     <div id="achievement_niubi" class="achievement-container ui segment">
                                         <div id="achievement_icon_niubi" class="achievement-icon">
-                                            <img id="achievement_icon_niubi" width="50px" height="50px">
+                                            <img id="achievement_icon_niubi" src="img/Icon_YGNN.jpg" width="50px" height="50px">
                                         </div>
                                         <div id="achievement_time_niubi" class="achievement-title-piecemeal">
                                         </div>
@@ -184,6 +184,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div id="achievement_alert">
+                                        *以上统计时间均为切片和二创时间
                                     </div>
                                 </div>
                             </div>
@@ -205,10 +208,7 @@
                                                 直播提醒
                                             </a>
                                             <a class="item" data-tab="achievement_config">
-                                                成就
-                                            </a>
-                                            <a class="item" data-tab="favorites_config">
-                                                收藏夹
+                                                统计
                                             </a>
                                             <a class="item" data-tab="live2D_config">
                                                 live2D
@@ -219,21 +219,21 @@
                                         <div class="ui bottom attached tab segment active" data-tab="main_config">
                                             <form name="main_form">
                                                 <div class="ui grid secondary_grid" id="secondary_grid_main">
-                                                    <div class="five wide column">
+                                                    <div class="six wide column">
                                                         视频轴标签
                                                         <br>
                                                         直播时间查询
                                                         <br>
                                                         直播提醒
                                                         <br>
-                                                        成就
+                                                        统计
                                                         <br>
                                                         收藏夹
                                                         <br>
                                                         live2D
                                                         <br>
                                                     </div>
-                                                    <div class="five wide column">
+                                                    <div class="seven wide column">
                                                         <div class="ui slider checkbox" id="checkbox_main_videoMark">
                                                             <input type="checkbox" tabindex="0" class="hidden">
                                                             <label>关闭</label>
@@ -266,7 +266,7 @@
                                                     </div>
                                                     <div class="button_field">
                                                         <button class="ui pink button" id="main_submit"
-                                                            type="button">保存设置</button>
+                                                            type="submit">保存设置</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -274,7 +274,7 @@
                                         <div class="ui bottom attached tab segment" data-tab="videoMark_config">
                                             <form name="videoMark_form">
                                                 <div class="ui grid secondary_grid" id="secondary_grid_videoMark">
-                                                    <div class="five wide column">
+                                                    <div class="seven wide column">
                                                         单页显示标签数
                                                         <br>
                                                         <br>
@@ -285,14 +285,14 @@
                                                     </div>
                                                     <div class="eight wide column">
                                                         <div class="ui input" id="number_videoMark_singlePage">
-                                                            <input type="number" placeholder="输入1到16间的任意数字"
+                                                            <input type="number" placeholder="输入大于1的整数"
                                                                 style="width: 100%;">
                                                         </div>
                                                         <br>
                                                     </div>
                                                     <div class="button_field">
                                                         <button class="ui blue button" id="videoMark_submit"
-                                                            type="button">保存设置</button>
+                                                            type="submit">保存设置</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -333,7 +333,7 @@
                                                     </div>
                                                     <div class="button_field">
                                                         <button class="ui black button" id="checkLiveTime_submit"
-                                                            type="button">保存设置</button>
+                                                            type="submit">保存设置</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -355,8 +355,9 @@
                                                         羊驼
                                                         <br>
                                                     </div>
-                                                    <div class="five wide column">
-                                                        <div class="ui slider checkbox" id="checkbox_liveReminder_Diana">
+                                                    <div class="seven wide column">
+                                                        <div class="ui slider checkbox"
+                                                            id="checkbox_liveReminder_Diana">
                                                             <input type="checkbox" tabindex="0" class="hidden">
                                                             <label>关闭</label>
                                                         </div>
@@ -366,20 +367,24 @@
                                                             <label>关闭</label>
                                                         </div>
                                                         <br>
-                                                        <div class="ui slider checkbox" id="checkbox_liveReminder_Eileen">
+                                                        <div class="ui slider checkbox"
+                                                            id="checkbox_liveReminder_Eileen">
                                                             <input type="checkbox" tabindex="0" class="hidden">
                                                             <label>关闭</label>
                                                         </div>
                                                         <br>
-                                                        <div class="ui slider checkbox" id="checkbox_liveReminder_Carol">
+                                                        <div class="ui slider checkbox"
+                                                            id="checkbox_liveReminder_Carol">
                                                             <input type="checkbox" tabindex="0" class="hidden">
                                                             <label>关闭</label>
                                                         </div> <br>
-                                                        <div class="ui slider checkbox" id="checkbox_liveReminder_Bella">
+                                                        <div class="ui slider checkbox"
+                                                            id="checkbox_liveReminder_Bella">
                                                             <input type="checkbox" tabindex="0" class="hidden">
                                                             <label>关闭</label>
                                                         </div> <br>
-                                                        <div class="ui slider checkbox" id="checkbox_liveReminder_Official">
+                                                        <div class="ui slider checkbox"
+                                                            id="checkbox_liveReminder_Official">
                                                             <input type="checkbox" tabindex="0" class="hidden">
                                                             <label>关闭</label>
                                                         </div>
@@ -387,32 +392,112 @@
                                                     </div>
                                                     <div class="button_field">
                                                         <button class="ui violet button" id="liveReminder_submit"
-                                                            type="button">保存设置</button>
+                                                            type="submit">保存设置</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="ui bottom attached tab segment" data-tab="achievement_config">
-                                            <div class="ttest" id="ttest">
-                                                <label>观看时提醒成就</label>
-                                                <div class="ui toggle checkbox">
-                                                    <input id="setting_showTip" type="checkbox" class="hidden">
-                                                </div>
-                                                <div class="ui right labeled input">
-                                                    <label>成就弹窗时间：</label>
-                                                    <input id="setting_TipTime" type="text" value="10">
-                                                    <div class="ui basic label">
-                                                        s
+                                            <form name="achievement_form">
+                                                <div class="ui grid secondary_grid" id="secondary_grid_achievement">
+                                                    <div class="five wide column">
+                                                        达成成就弹窗提醒
+                                                        <br>
+                                                        <br>
+                                                        弹窗时间
+                                                        <br>
+                                                        <br>
+                                                        第一次，第二次，
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                    <div class="seven wide column">
+                                                        <div class="ui slider checkbox" id="checkbox_achievement_popup">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <div class="ui input"
+                                                            id="number_achievement_popupTime" style="width: 100%;">
+                                                            <input type="number" placeholder="秒数">
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <div class="ui input" id="number_achievement_YGNN">
+                                                            <input type="text" placeholder="brave" style="width: 100%;">
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                    <div class="button_field">
+                                                        <button class="ui red button" id="achievement_submit"
+                                                            type="submit">保存设置</button>
                                                     </div>
                                                 </div>
-                                                <div id="setting_save" class="ui primary button">Save</div>
-                                            </div>
-                                        </div>
-                                        <div class="ui bottom attached tab segment" data-tab="favorites_config">
-                                            这是可拉伸的网格列。此片段总是会匹配标
+                                            </form>
                                         </div>
                                         <div class="ui bottom attached tab segment" data-tab="live2D_config">
-                                            这是可拉伸的网格
+                                            <form name="live2D_form">
+                                                <div class="ui grid secondary_grid" id="secondary_grid_live2D">
+                                                    <div class="five wide column">
+                                                        默认模型角色
+                                                        <br>
+                                                        <br>
+                                                        是否可拖拽
+                                                        <br>
+                                                        <br>
+                                                        模型默认位置
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                    <div class="seven wide column">
+                                                        <div class="ui slider checkbox live2D"
+                                                            id="checkbox_live2D_model">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>嘉然</label>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <div class="ui slider checkbox"
+                                                            id="checkbox_live2D_draggable">
+                                                            <input type="checkbox" tabindex="0" class="hidden">
+                                                            <label>关闭</label>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <div class="ui radio checkbox" id="checkbox_live2D_left-top">
+                                                            <input type="radio" name="live2DPosition" checked=""
+                                                                tabindex="0" class="hidden">
+                                                            <label>左上&nbsp;</label>
+                                                        </div>
+                                                        <div class="ui radio checkbox" id="checkbox_live2D_right-top">
+                                                            <input type="radio" name="live2DPosition" checked=""
+                                                                tabindex="0" class="hidden">
+                                                            <label>右上</label>
+                                                        </div>
+                                                        <br>
+                                                        <div class="ui radio checkbox"
+                                                            id="checkbox_live2D_left-bottom">
+                                                            <input type="radio" name="live2DPosition" checked=""
+                                                                tabindex="0" class="hidden">
+                                                            <label>左下&nbsp;</label>
+                                                        </div>
+
+                                                        <div class="ui radio checkbox"
+                                                            id="checkbox_live2D_right-bottom">
+                                                            <input type="radio" name="live2DPosition" checked=""
+                                                                tabindex="0" class="hidden">
+                                                            <label>右下</label>
+                                                        </div>
+
+                                                        <br>
+                                                    </div>
+                                                    <div class="button_field">
+                                                        <button class="ui yellow button" id="live2D_submit"
+                                                            type="submit">保存设置</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

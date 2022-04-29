@@ -9,21 +9,29 @@
 #middle_col {
     /* background-color:rgba(255, 255, 255, 0.4); */
     height: 100%;
-    padding-top: 20%;
+    padding-top: 18%;
 }
 
+html{
+    height: 100%;
+}
 body {
     background-image: url('../img/All/DragonBoatFestivalAll.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-}
-
-#white_cover {
-    background-color: rgba(255, 255, 255, 0.7);
     height: 100%;
 }
+
+
+#white_cover {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 100%;
+    width: 100%;
+}
+
 
 #search_bar {
     height: 40px;
@@ -37,7 +45,6 @@ body {
 
 .margin_container {
     /* margin-top: 25%; */
-    margin-bottom: 19%;
     margin-left: 8%;
     margin-right: 8%;
 }
@@ -57,7 +64,7 @@ body {
 }
 
 .ui.bottom.attached.tab.segment {
-    height: 400px;
+    height: 28rem;
     background-color: rgba(255, 255, 255, 0);
     overflow: hidden;
 }
@@ -67,6 +74,7 @@ body {
     margin-bottom: 0;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    overflow: hidden;
 }
 
 
@@ -146,97 +154,6 @@ body {
 }
 
 
-/* 最常访问网址页面的随屏幕分辨率响应，可能会在别的框里沿用 */
-
-@media (max-width: 992px) {
-    .column {
-        width: 20% !important;
-    }
-}
-
-@media (max-height: 580px) {
-    #white_cover {
-        background-color: rgba(255, 255, 255, 0.7);
-        height: auto;
-    }
-
-
-    .column {
-        width: 20% !important;
-    }
-
-    .ui.bottom.attached.tab.segment {
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0);
-
-        overflow: hidden;
-    }
-
-    .most_visited_div_p {
-        display: none;
-    }
-
-    .div_column_blank {
-        height: 4%;
-    }
-
-
-
-}
-
-@media (max-height: 802px) and (min-width: 992px) {
-    #white_cover {
-        background-color: rgba(255, 255, 255, 0.7);
-        height: auto;
-    }
-
-    .column {
-        width: 20% !important;
-    }
-
-    .ui.bottom.attached.tab.segment {
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0);
-
-        overflow: hidden;
-    }
-
-    .most_visited_div_p {
-        display: none;
-    }
-
-    .div_column_blank {
-        height: 4%;
-    }
-
-
-}
-
-@media (max-height: 672px) and (max-width: 992px) {
-    #white_cover {
-        background-color: rgba(255, 255, 255, 0.7);
-        height: 100%;
-    }
-
-    .column {
-        width: 20% !important;
-    }
-
-    .ui.bottom.attached.tab.segment {
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0);
-
-        overflow: hidden;
-    }
-
-    .most_visited_div_p {
-        display: none;
-    }
-
-    .div_column_blank {
-        height: 4%;
-    }
-}
 
 
 .ui.grid.secondary_grid {
@@ -252,6 +169,11 @@ body {
 }
 
 .wide.column a {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.wide.column .ui.radio.checkbox label {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -273,6 +195,16 @@ body {
     width: 100%;
 }
 
+.ui.secondary.vertical.menu > .item {
+    border: none;
+    margin: 0em 0em 0.8em;
+    border-radius: 0.28571429rem !important;
+}
+
+.ui.grid>.four.wide.column {
+    padding-right: 0!important;
+}
+
 #secondary_grid_checkLiveTime img {
     width: 120%;
 }
@@ -291,6 +223,10 @@ body {
     background-color: #E799B0!important;
 }
 
+#secondary_grid_videoMark .ui.input.focus > input, .ui.input > input:focus {
+    border-color: #9AC8E2;
+}
+
 #secondary_grid_checkLiveTime .ui.radio.checkbox input:focus:checked ~ label:after {
     background-color: #576690 !important;
 }
@@ -301,6 +237,44 @@ body {
 
 #secondary_grid_liveReminder .ui.slider.checkbox.checked label:before {
     background-color: #B8A6D9!important;
+}
+
+#secondary_grid_achievement .ui.slider.checkbox input:focus:checked ~ .box:before, #secondary_grid_achievement .ui.slider.checkbox input:focus:checked ~ label:before {
+    background-color: #fb6156 !important;
+}
+#secondary_grid_achievement .ui.slider.checkbox input:checked ~ label:before {
+    background-color: #fb6156 !important;
+}
+#secondary_grid_achievement .ui[class*="right labeled"].input > input:focus {
+    border-right-color: #fb6156 !important;
+}
+
+#secondary_grid_achievement .ui.input.focus > input, #secondary_grid_achievement .ui.input > input:focus {
+    border-color: #fb6156;
+}
+#secondary_grid_live2D .ui.slider.checkbox label{
+    color: #000;
+}
+#checkbox_live2D_model input:focus:checked ~ .box:before, #checkbox_live2D_model input:focus:checked ~ label:before {
+    background-color: #9AC8E2 !important;
+}
+#checkbox_live2D_model input:checked ~ label:before {
+    background-color: #9AC8E2 !important;
+}
+#checkbox_live2D_model .ui.slider.checkbox input:focus ~ .box:before,#checkbox_live2D_model input:focus ~ label:before  {
+    background-color: #E799B0 !important;
+}
+
+#checkbox_live2D_model .ui.slider.checkbox .box:before,#checkbox_live2D_model label:before {
+    background-color: #E799B0 !important;
+}
+
+#checkbox_live2D_draggable input:checked ~ label:before{
+    background-color: #FC966E !important;
+}
+
+#secondary_grid_live2D .ui.radio.checkbox input:checked ~ label:after {
+    background-color: #FC966E !important;
 }
 
 .button_field {
@@ -348,11 +322,29 @@ body {
     background-color: #a284db !important;
 }
 
+.ui.red.button {
+    background-color: #fb6156 !important;
+}
+
+.ui.red.button:hover {
+    background-color: #cb4e45 !important;
+}
+
+.ui.yellow.button {
+    background-color: #FC966E !important;
+}
+
+.ui.yellow.button:hover {
+    background-color: #dc6536 !important;
+}
+
+
+
 @media (max-height: 624px) and (max-width: 992px) {
-    #white_cover {
+    /* #white_cover {
         background-color: rgba(255, 255, 255, 0.7);
         height: auto;
-    }
+    } */
 
     .column {
         width: 20% !important;
@@ -360,10 +352,10 @@ body {
 }
 
 @media (max-height: 624px) and (max-width: 768px) {
-    #white_cover {
+    /* #white_cover {
         background-color: rgba(255, 255, 255, 0.7);
         height: 100%;
-    }
+    } */
 
     .column {
         width: 20% !important;
@@ -371,10 +363,10 @@ body {
 }
 
 @media (max-height: 424px) and (max-width: 768px) {
-    #white_cover {
+    /* #white_cover {
         background-color: rgba(255, 255, 255, 0.7);
         height: auto;
-    }
+    } */
 
     .column {
         width: 20% !important;
@@ -497,11 +489,13 @@ body {
 #achievement_clip {
     grid-column: 1/3;
     grid-row: 1/2;
+    margin-top: 3%;
 }
 
 #achievement_alive {
     grid-column: 1/3;
     grid-row: 2/3;
+    margin-top: 2%;
 }
 
 #achievement_Diana {
@@ -529,9 +523,10 @@ body {
     grid-row: 4/5;
 }
 
-#achievement_Niubi {
+#achievement_niubi {
     grid-column: 2/3;
     grid-row: 5/6;
+    display: none;
 }
 
 .Diana .bar {
@@ -569,11 +564,22 @@ body {
 .Carol .bar {
     background-color: rgb(184, 166, 217) !important;
 }
+.Carol {
+    background-color: rgba(184, 166, 217, 0.3) !important;
+}
+
+#achievement_alert{
+    position: absolute;
+    top: 94%;
+    left: 5%;
+    font-size: small;
+}
 
 
 /* live2D css 默认设置 */
 #live2D_container {
     display: none;
+    position: absolute;
 }
 
 #pio-container {
@@ -582,7 +588,7 @@ body {
     z-index: 22637261;
     transition: transform 0.3s;
     cursor: grab;
-    
+    position: relative;
 }
 
 #pio-container:hover {
@@ -600,7 +606,7 @@ body {
 }
 
 #pio {
-    height: 400px;
+    height: 20rem!important;
 }
 
 .pio-action .pio-home {
@@ -632,6 +638,108 @@ body {
 .pio-action .pio-close {
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M249.999 198.668L352.665 96c14.667-14.666 36.668-14.666 51.335 0 14.666 14.667 14.666 36.668 0 51.334L301.333 250 404 352.668c14.666 14.667 14.666 36.666 0 51.332-14.667 14.667-36.667 14.667-51.334 0L249.999 301.334 147.333 404c-14.668 14.667-36.666 14.667-51.334 0-14.666-14.666-14.666-36.665 0-51.332L198.666 250 95.999 147.334c-14.666-14.666-14.666-36.667 0-51.334 14.668-14.666 36.665-14.666 51.333 0l102.667 102.668z' fill='%23873a18'/%3E%3C/svg%3E");
 }
-.Carol {
-    background-color: rgba(184, 166, 217, 0.3) !important;
+.pio-container .pio-show {
+    bottom: 0!important;
 }
+
+.pio-container.hidden .pio-action {
+    top: -10em!important;
+}/* 最常访问网址页面的随屏幕分辨率响应，可能会在别的框里沿用 */
+
+@media (max-width: 992px) {
+    .column {
+        width: 20% !important;
+    }
+}
+
+@media (max-height: 580px) {
+    #white_cover {
+        background-color: rgba(255, 255, 255, 0.7);
+        height: auto;
+    }
+
+
+    .column {
+        width: 20% !important;
+    }
+
+    /* .ui.bottom.attached.tab.segment {
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0);
+
+        overflow: hidden;
+    } */
+
+    /* .most_visited_div_p {
+        display: none;
+    } */
+
+    /* .div_column_blank {
+        height: 4%;
+    } */
+
+
+
+}
+
+@media (max-height: 802px) and (min-width: 992px) {
+    /* #white_cover {
+        background-color: rgba(255, 255, 255, 0.7);
+        height: auto;
+    } */
+
+    #pio {
+        height: 15rem!important;
+    }
+    .column {
+        width: 20% !important;
+    }
+
+    #middle_col{
+        padding-top: 8%;
+    }
+
+    /* .ui.bottom.attached.tab.segment {
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0);
+
+        overflow: hidden;
+    }
+
+    .most_visited_div_p {
+        display: none;
+    }
+
+    .div_column_blank {
+        height: 4%;
+    } */
+
+
+}
+
+@media (max-height: 672px) and (max-width: 992px) {
+    /* #white_cover {
+        background-color: rgba(255, 255, 255, 0.7);
+        height: 100%;
+    } */
+
+    .column {
+        width: 20% !important;
+    }
+
+    /* .ui.bottom.attached.tab.segment {
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0);
+
+        overflow: hidden;
+    }
+
+    .most_visited_div_p {
+        display: none;
+    }
+
+    .div_column_blank {
+        height: 4%;
+    } */
+}
+

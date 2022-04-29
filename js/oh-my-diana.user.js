@@ -1,3 +1,11 @@
+var draggable = "123";
+chrome.storage.sync.get('live2D_draggable', function (status) {
+  if (status.live2D_draggable) {
+    draggable = "draggable";
+    console.log("status" + status.live2D_draggable)
+  } else {
+    draggable = "fixed";
+  }
 (async function () {
   'use strict';
 
@@ -52,15 +60,16 @@
 
     // 初始化pio
     _pio_initialize_pixi()
-
-    加载圣·嘉然()
+    
+      加载圣·嘉然(draggable)
+    
 
     console.log("all done.")
   });
 
   // 初始化设定
-  const initConfig = {
-    mode: "fixed",
+  var initConfig = {
+    mode: draggable,
     hidden: true,
     content: {
       link: 引流[Math.floor(Math.random() * 引流.length)], // 引流链接
@@ -84,6 +93,9 @@
   let pio_reference // pio实例
 
   function 加载圣·嘉然() {
+        
+
+    
     pio_reference = new Paul_Pio(initConfig)
 
     pio_alignment = "right" // 右下角
@@ -334,3 +346,4 @@
   }
 
 })();
+})
