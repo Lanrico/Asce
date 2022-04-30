@@ -70,7 +70,6 @@ function baiduWithHttps(formname) {
   }
 };
 
-//轮换背景图片，计划未来压缩插件体量可能换成网络标签，计划实现用户添加图片功能
 //图片来自于ASOUL_offical官方weibo
 var backgroundImgArray = ['../img/All/MidAutumnFestivalAll.jpg'];
 backgroundImgArray.push('../img/All/DragonBoatFestivalAll.jpg');
@@ -124,7 +123,7 @@ function changeInputByStorage(page, name, status) {
       var checkbox = document.getElementById('checkbox_' + name);
       checkbox.children[0].checked = true;
       checkbox.className = checkbox.className + ' checked';
-      changeButtonStatus(checkbox);    
+      changeButtonStatus(checkbox);
     } catch (error) {
       console.log('checkbox_' + name)
     }
@@ -227,10 +226,18 @@ function initialNewtab() {
     }
     if (status.main_live2D) {
       switch (status.live2D_radio) {
-        case 'left-top': document.getElementById('live2D_container').setAttribute('style', 'left: 0; top: 30px; display: block');break;
-        case 'left-bottom': document.getElementById('live2D_container').setAttribute('style', 'left: 0; bottom: 5px; display: block');break;
-        case 'right-top': document.getElementById('live2D_container').setAttribute('style', 'right: 0; top: 30px; display: block');break;
-        case 'right-bottom': document.getElementById('live2D_container').setAttribute('style', 'right: 0; bottom: 5px; display: block');break;
+        case 'left-top':
+          document.getElementById('live2D_container').setAttribute('style', 'left: 0; top: 30px; display: block');
+          break;
+        case 'left-bottom':
+          document.getElementById('live2D_container').setAttribute('style', 'left: 0; bottom: 5px; display: block');
+          break;
+        case 'right-top':
+          document.getElementById('live2D_container').setAttribute('style', 'right: 0; top: 30px; display: block');
+          break;
+        case 'right-bottom':
+          document.getElementById('live2D_container').setAttribute('style', 'right: 0; bottom: 5px; display: block');
+          break;
       }
     }
 

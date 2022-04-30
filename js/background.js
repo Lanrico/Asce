@@ -15,7 +15,6 @@ function live_notification(live_id, name, icon_url) {
             var nowTime = new Date().getTime() / 1000;
             liveTime = nowTime - liveBeginTime;
             console.log(liveTime);
-
             //直播间正在直播并且直播时长小于一定数值时弹出window提醒（确保一场直播只提醒一次）
             if (isLive & (liveTime <= 120)) {
                 create_notification(live_id, name, icon_url);
@@ -53,7 +52,7 @@ setInterval(function (e) {
     // 一定时间后清理对应id的通知
     setTimeout(function (e) {
         chrome.notifications.clear("id");
-    }, 30000);
+    }, 600000);
 }, 99999);
 
 
