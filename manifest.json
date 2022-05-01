@@ -30,6 +30,7 @@
       "js": [
         "js/jquery-3.6.0.min.js",
         "bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js",
+		"js/clip.js",
         "js/Achievement.js"
       ],
       "css": [
