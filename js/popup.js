@@ -61,7 +61,6 @@ function videoMarkScript() {
     });
   });
 
-<<<<<<< HEAD
 //用户移除已有的内容
 document.getElementById('removeButton').addEventListener('click', async () => {
   let tab = await getCurrentTab();
@@ -109,19 +108,6 @@ btn.onclick = function() {
   });
 
 };
-//移除的实现
-function remove() {
-  // //这是另一版功能，暂不需要用
-  // var divA = document.getElementById("divA");
-  // if (divA) {
-  //     divA.parentNode.removeChild(divA);
-  // }
-  var divB = document.getElementById("divB");
-  if (divB) {
-    divB.parentNode.removeChild(divB);
-  }
-}
-=======
   //移除的实现
   function remove() {
     // //这是另一版功能，暂不需要用
@@ -190,4 +176,3 @@ $(function () {
   videoMarkScript();
   initialPopup();
 });
->>>>>>> 3307571605f51645b686265d0c8f245fec313142

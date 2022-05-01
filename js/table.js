@@ -1,8 +1,10 @@
 
-document.getElementsByTagName("BODY")[0].onpageshow = function() { showTable(); };
+//document.getElementsByTagName("BODY")[0].onpageshow = function() { showTable(); };
 $(document).ready(function() {
-  // All your normal JS code goes in here
+  showTable();
+  
   $(".rating").rating();
+
   var delete_EL = document.getElementById("delete");
   delete_EL.onclick = function() {
     chrome.storage.sync.get('table', function(result) {
@@ -60,6 +62,7 @@ function showTable() {
     contain = document.getElementById("contain");
     contain.innerHTML = str;
   });
+  $(".rating").rating();
 
 };
 

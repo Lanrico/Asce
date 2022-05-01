@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<<<<<<< HEAD
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-            来自枝江的新标签页！
-        </title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master\semantic.css">
-        <link rel="stylesheet" type="text/css" href="css/newtab.css">
-        <link href="bootstrap-5.1.3-dist\css\bootstrap.min.css" rel="stylesheet">
-        <script src="bootstrap-5.1.3-dist\js\bootstrap.bundle.min.js"></script>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="Semantic-UI-CSS-master\semantic.min.js"></script>
-        <script src='js/newtab.js'></script>
-=======
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,92 +17,11 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="Semantic-UI-CSS-master\semantic.min.js"></script>
     <script src='js/newtab.js'></script>
->>>>>>> 3307571605f51645b686265d0c8f245fec313142
 
     </head>
 
     <body>
         <div id="white_cover">
-            <div>
-
-<<<<<<< HEAD
-            </div>
-            <div class="container">
-                <!-- 将页面分为中间固定值，两侧对半分 -->
-                <div class="row">
-                    <div class="col"></div>
-                    <div id="middle_col" style="width:1000px">
-                        <div class="margin_container">
-                            <form id="search_bar" class="ui right action left icon input"
-                                  action="http://www.baidu.com/baidu">
-                                <i class="circular search link icon">
-                                    <input type="submit" value="" id="search_submit">
-                                </i>
-                                <input type="text" placeholder="搜索" id="search_input" name="word">
-                                <div class="ui basic floating dropdown button" id="search_dropdown">
-                                    <div class="text" id="selected_search_engine">百度搜索</div>
-                                    <i class="dropdown icon"></i>
-                                    <div class="menu">
-                                        <div class="item">百度搜索</div>
-                                        <div class="item">待更新</div>
-                                    </div>
-                                </div>
-                            </form>
-                            <div id="main_function_container">
-                                <div class="ui secondary pointing menu">
-                                    <!-- 导航栏里的几个标签啦 -->
-                                    <a class="item active" data-tab="mostVisited">常用网站</a>
-                                    <a class="item" data-tab="second">Second</a>
-                                    <a class="item" data-tab="third">Third</a>
-                                    <a class="right item" data-tab="selection">插件设置 </a>
-                                </div>
-                                <div class="ui bottom attached tab segment active" data-tab="mostVisited">
-                                    <div class="main_function_secondary_container">
-
-                                        <div class="ui five column doubling stackable grid container" id = "most_visited_grid">
-                                            <!-- 此处js填充常用网址 -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ui bottom attached tab segment" data-tab="second">
-                                    <div id='mostVisited_div'></div> <!-- 默认新标签页的常用网站功能 -->
-                                </div>
-                                <div class="ui bottom attached tab segment" data-tab="third">
-                                    <a href="table.html">   <button class="ui button" id="jump-table" >tab</button></a>
-                                    <table id="show-table" class="ui very basic collapsing celled table">
-		                        <thead>
-			                    <tr>
-				                <th>Title</th>
-				                <th>User</th>
-				                <th>Link</th>
-				                <th>Score</th>
-                                                <th><button class="ui button" id="clear-table">clear</button></th>
-			                    </tr>
-		                        </thead>
-		                        <tbody id="contain">
-		                        </tbody>
-                                        <tfoot>
-                                            <tr><th colspan="5">
-                                                <div class="ui right floated pagination menu">
-                                                    <a class="icon item">
-                                                        <i class="left chevron icon"></i>
-                                                    </a>
-                                                    <a class="item">1</a>
-                                                    <a class="item">2</a>
-                                                    <a class="item">3</a>
-                                                    <a class="item">4</a>
-                                                    <a class="icon item">
-                                                        <i class="right chevron icon"></i>
-                                                    </a>
-                                                </div>
-                                            </th>
-                                            </tr></tfoot>
-	                            </table>
-                                </div>
-                                <div class="ui bottom attached tab segment" data-tab="selection">
-                                    Third
-                                </div>
-=======
         </div>
         <div class="container">
             <!-- 将页面分为中间固定值，两侧对半分 -->
@@ -286,7 +190,35 @@
                                 </div>
                             </div>
                             <div class="ui bottom attached tab segment" data-tab="favorites">
-                                <!-- 其他功能加在这里 -->
+                                    <table id="show-table" class="ui very basic collapsing celled table">
+		                        <thead>
+			                    <tr>
+				                <th>Title</th>
+				                <th>User</th>
+				                <th>Link</th>
+				                <th>Score</th>
+                                                <th><button class="ui button" id="clear-table">clear</button></th>
+			                    </tr>
+		                        </thead>
+		                        <tbody id="contain">
+		                        </tbody>
+                                        <tfoot>
+                                            <tr><th colspan="5">
+                                                <div class="ui right floated pagination menu">
+                                                    <a class="icon item">
+                                                        <i class="left chevron icon"></i>
+                                                    </a>
+                                                    <a class="item">1</a>
+                                                    <a class="item">2</a>
+                                                    <a class="item">3</a>
+                                                    <a class="item">4</a>
+                                                    <a class="icon item">
+                                                        <i class="right chevron icon"></i>
+                                                    </a>
+                                                </div>
+                                            </th>
+                                            </tr></tfoot>
+	                            </table>
                             </div>
                             <div class="ui bottom attached tab segment" data-tab="selection">
                                 <div class="ui grid">
@@ -596,24 +528,18 @@
                                         </div>
                                     </div>
                                 </div>
->>>>>>> 3307571605f51645b686265d0c8f245fec313142
                             </div>
                         </div>
                     </div>
-                    <div class="col"></div>
+                    <div class="col">
+                    </div>
                 </div>
             </div>
-            <script src='js/afternewtab.js'></script>
-            <script src="js/table.js"></script>
 
 
         </div>
-<<<<<<< HEAD
+            <script src="js/table.js"></script>
 
-    </body>
-
-</html>
-=======
         <script src="js/oh-my-diana.user.js"></script>
         <script src='js/afternewtab.js'></script>
     </div>
@@ -623,4 +549,3 @@
 </body>
 
 </html>
->>>>>>> 3307571605f51645b686265d0c8f245fec313142
