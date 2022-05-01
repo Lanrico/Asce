@@ -1,0 +1,87 @@
+.ui.secondary.pointing.menu {
+    margin: 0;
+}
+
+.ui.bottom.attached.tab.segment.active {
+    border: none;
+}
+
+#videoMark_segment {
+    padding: 0;
+}
+
+.container-fluid {
+    margin-top: 14px;
+    border: none;
+}
+
+#input1 {
+    width: 280px;
+    height: 310px;
+    padding: 10px;
+    line-height: 22px;
+    margin-left: 10px;
+}
+
+body {
+    height: 90%;
+    width: 200px;
+}
+
+.image {
+    height: 245px!important;
+    width: auto!important;
+    margin: 0 auto;
+}
+
+.ui.large.buttons {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.ui.pink.button {
+    background-color: #E799B0!important;
+}
+
+.ui.pink.button:hover {
+    background-color: rgb(224, 117, 149)!important;
+}
+
+.ui.blue.button {
+    background-color: #9AC8E2!important;
+}
+
+.ui.blue.button:hover {
+    background-color: rgba(84, 167, 215, 0.9)!important;
+}
+
+#tips {
+    margin: 0 auto;
+    width: 130px;
+    opacity: 0.5;
+    display: block;
+    cursor: pointer;  
+}
+
+#tips:hover {
+    opacity: 0.8;
+}
+
+#videomark_tips{
+    display: block;
+}
+
+#videomark_tip2 {
+    display: none;
+}
+
+#videomark_tip3 {
+    display: none;
+}
+
+.ui.buttons {
+    width: 80%;
+    margin-left: 25px;
+    margin-bottom: 8px;
+}
+
