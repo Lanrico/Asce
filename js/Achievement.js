@@ -1,24 +1,3 @@
-$(document).on("click", function() {
-    showTip()
-    chrome.storage.sync.get(["minute_alive"], function(result) {
-        console.log("minute_alive: " + result.minute_alive)
-    })
-    console.log(official)
-
-    // var s = window.location.href
-    // var s2 = s.split("?")[0]
-    // var s3 = s2.split("/")
-    // var s4 = s3[s3.length - 1]
-    // console.log(s4)
-
-    // fetch("https://api.bilibili.com/x/web-interface/view?bvid=" + s4)
-    //     .then(response => response.json())
-    //     .then(function(json) {
-    //         console.log(json.data.owner.mid)
-    //     })
-
-})
-
 
 //页面加载完成执行
 $(function() {
@@ -436,7 +415,7 @@ var showTip = function() {
                 var title = "已经看了" + h + "小时了！";
                 //成就描述
                 var a = achievementTime;
-                var describe = "再接再厉再看" + (a[a.indexOf(h) + 1] - h).toString() + "小时";
+                var describe = "再接再厉看到" + (a[a.indexOf(h) + 1] - h).toString() + "小时";
 
                 //在成就弹窗上设置成就标题和成就描述
                 $("#tip-title").text(title);

@@ -29,10 +29,13 @@ function buildNewtabDom(mostVisitedURLs) {
 
     //图标来自于每个网页的母站的/favicon.ico，当无法获取或者获取时长超时时使用asoullogo作为默认图片
     var img = div_column_content_img.appendChild(document.createElement('img'));
-    img.setAttribute("class", "most_visited_img");
+    img.setAttribute("class", "most_visited_img"); 
     img.draggable = false;
-    img.src = mostVisitedURLs[i].url.split('/')[0] + mostVisitedURLs[i].url.split('/')[1] + mostVisitedURLs[i].url.split('/')[2] + '/favicon.ico';
-
+    // img.src = 'img/A-SOULlogo32.png';
+    img.src = mostVisitedURLs[i].url.split('/')[0] + '/' + mostVisitedURLs[i].url.split('/')[1] + '/' + mostVisitedURLs[i].url.split('/')[2] + '/favicon.ico';
+    // img.src = 'https://tools.ly522.com/ico/favicon.php?url=' + mostVisitedURLs[i].url.split('/')[0] + '/' + mostVisitedURLs[i].url.split('/')[1] + '/' + mostVisitedURLs[i].url.split('/')[2] +'&size=32';
+     //使新标签页不会因为网络问题加载太长时间占用网络资源，加载0.5s后停止
+     
     //图片下方文字，文字内容为网页标题
     var div_p = div_column_content.appendChild(document.createElement('div'));
     div_p.setAttribute("class", "most_visited_div_p");
@@ -40,20 +43,26 @@ function buildNewtabDom(mostVisitedURLs) {
   }
   setTimeout(function () {
     window.stop();
-  }, 1000); //使新标签页不会因为网络问题加载太长时间占用网络资源，加载0.5s后停止
+  }, 1000); //使新标签页不会因为网络问题加载太长时间占用网络资源，加载1s后停止
 
 }
+
 
 chrome.topSites.get(buildNewtabDom);
 
 $(function () {
   $('img').bind("error", function () {
-    this.src = 'img/A-SOULlogo32.png';
+    this.src = '';
+    this.src = 'img/A-SOULlogoCircle40.png';
+    console.log('img error')
   });
-  $('#schedule img').bind("error", function () {
+  $('#schedule').bind("error", function () {
     this.src = 'img/checkLiveTime_error.png';
+    this.style = 'margin: 0;'
+    console.log('schedule error')
   });
 });
+
 
 //用于控制baidu搜索
 function checkHttps() {

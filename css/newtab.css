@@ -119,7 +119,9 @@ body {
 
 .div_column_content_img {
     /* margin-top: 35%; */
+    margin: 0 auto;
     height: 40px;
+    width: fit-content;
     margin-bottom: 10%;
 }
 
@@ -150,7 +152,7 @@ body {
 }
 
 .div_column_blank {
-    height: 20%;
+    height: 28%;
 }
 
 

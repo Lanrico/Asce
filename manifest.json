@@ -4,12 +4,12 @@
   "version": "0.4",
   "description": "这是一个整合了video nail、asoul tewtab和成就系统的插件",
   "icons": {
-    "128": "img/A-SOULlogo.png",
-    "48": "img/A-SOULlogo.png",
-    "16": "img/A-SOULlogo.png"
+    "128": "img/A-SOULlogoCircle.png",
+    "48": "img/A-SOULlogoCircle.png",
+    "16": "img/A-SOULlogoCircle.png"
   },
   "action": {
-    "default_icon": "img/A-SOULlogo.png",
+    "default_icon": "img/A-SOULlogoCircle.png",
     "default_popup": "popup.html"
   },
 
