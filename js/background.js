@@ -15,7 +15,7 @@ function live_notification(live_id, name, icon_url) {
             var nowTime = new Date().getTime() / 1000;
             liveTime = nowTime - liveBeginTime;
             console.log(liveTime);
-            //直播间正在直播并且直播时长小于一定数值时弹出window提醒（确保一场直播只提醒一次）
+            //直播间正在直播并且直播时长小于一定数值时弹出windows提醒（确保一场直播只提醒一次）
             if (isLive & (liveTime <= 120)) {
                 create_notification(live_id, name, icon_url);
                 // console.log("notification!")
@@ -40,7 +40,11 @@ setInterval(function (e) {
     chrome.storage.sync.get(liveReminder_list, function (status) {
         var liveReminder_status = []
         for (let i = 0; i < liveReminder_list.length; i++) {
-            liveReminder_status.push(status[liveReminder_list[i]]);
+            if(status[liveReminder_list[i]] == undefined){
+                liveReminder_status.push(true)
+            }else{
+                liveReminder_status.push(status[liveReminder_list[i]]);
+            }
         }
         console.log(liveReminder_status)
         for (let i = 0; i < live_info_list.length; i++) {

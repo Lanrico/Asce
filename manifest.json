@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Asce",
-  "version": "0.4",
-  "description": "这是一个整合了video nail、asoul tewtab和成就系统的插件",
+  "version": "0.9",
+  "description": "这是一个Asoul风格的Chrome美化插件",
   "icons": {
     "128": "img/A-SOULlogoCircle.png",
     "48": "img/A-SOULlogoCircle.png",
