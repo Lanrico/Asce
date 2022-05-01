@@ -1,9 +1,22 @@
 
 //document.getElementsByTagName("BODY")[0].onpageshow = function() { showTable(); };
-$(document).ready(function() {
+$("[data-tabe='favorites']").ready(function() {
   console.log("split");
-  splitTable();
+  async function init() {
+    var num = await splitTable(1);
+  }
+  init();
+});
+// $(document).ready(function() {
+//   console.log("split");
+//   new Promise(function(resolve, reject) {
+//     splitTable(1);
+//   })
+//     .then(deleteItem())
+//     .then(pgJump());
+// });
 
+function deleteItem(x) {
   var delete_EL = document.getElementById("delete");
   delete_EL.onclick = function() {
     chrome.storage.sync.get('table', function(result) {
@@ -19,10 +32,30 @@ $(document).ready(function() {
       chrome.storage.sync.set({ table: table }, function() { });
     });
   };
-});
+}
+
+function pgJump(q) {
+  $("#pgn2").each(function() {
+    $(this).click(function() {
+      splitTable(parseInt($(this).attr("pgn")));
+    });
+  });
+  $("#pgn").each(function() {
+    $(this).click(function() {
+      splitTable(parseInt($(this).attr("pgn")));
+    });
+  });
+
+  $(".left.chevron.icon").click(function() {
+    splitTable(1);
+  });
+}
+
+
+
 function showTable(startRow, endRow, table) {
   var str = "";
-  for (var i = startRow-1; i < endRow; i++) {
+  for (var i = startRow - 1; i < endRow; i++) {
     console.log("llll");
     str += '<tr>';
 
@@ -59,8 +92,11 @@ function showTable(startRow, endRow, table) {
   }
   contain = document.getElementById("contain");
   contain.innerHTML = str;
+
   $(".rating").rating();
 
+  deleteItem();
+  
 };
 
 var clear = document.getElementById("clear-table");
@@ -69,8 +105,8 @@ clear.onclick = function() {
 };
 
 
-function splitTable() {
-  chrome.storage.sync.get('table', function(result) {
+ function splitTable(pgn) {
+   chrome.storage.sync.get('table',  function(result) {
     table = result.table;
     var num = table.length;//表格所有行数(所有记录数)
     var totalPage = 0;//总页数
@@ -81,15 +117,41 @@ function splitTable() {
     } else {
       totalPage = parseInt(num / pageSize);
     }
-    var currentPage = 1;//当前页数
+    var currentPage = pgn;//当前页数
     var startRow = (currentPage - 1) * pageSize + 1;//开始显示的行  1
     var endRow = currentPage * pageSize;//结束显示的行   15
     endRow = (endRow > num) ? num : endRow;
     showTable(startRow, endRow, table);
+    showFoot(currentPage, totalPage);
   });
+  return 0;
 }
 
 
-function showFoot(){
-  var footStr="";
+function showFoot(currentPage, totalPage) {
+  var footStr = "";
+  footStr += "<tr><th colspan=\"5\">";
+  footStr += "<div class=\"ui right floated pagination menu\">";
+  footStr += "<a class=\"icon item\"><i class=\"left chevron icon\"></i></a>";
+  if (totalPage == 1) {
+    footStr += "<a class=\"active item\">1</a>";
+  }
+  else if (currentPage == totalPage) {
+    footStr += "<a class=\"item\" id=\"pgn\" pgn=1>1</a>";
+    footStr += `<a class=\"active item\" id=\"pgn2\" pgn=${currentPage}>${currentPage}</a>`;
+  }
+  else if (currentPage == 1) {
+    footStr += "<a class=\"active item\" id=\"pgn\" pgn=1>1</a>";
+    footStr += `<a class=\"item\" id=\"pgn2\" pgn=${totalPage}>${totalPage}</a>`;
+  }
+  else {
+    footStr += "<a class=\"item\" id=\"pgn2\" pgn=1>1</a>";
+    footStr += `<a class=\"active item\" id=\"pgn\" pgn=${currentPage}>${currentPage}</a>`;
+    footStr += `<a class=\"item\" id=\"pgn2\" pgn=${totalPage}>${totalPage}</a>`;
+  }
+  footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
+  tableFoot = document.getElementById("table-foot");
+  tableFoot.innerHTML = footStr;
+
+  pgJump();
 }
