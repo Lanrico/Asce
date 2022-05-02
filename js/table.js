@@ -30,8 +30,13 @@ function deleteItem() {
       chrome.storage.sync.set({ table: table }, function() { });
     });
   };
-  $("#delete").click(function(){
-    delete_item($(this).attr("bv"));
+  $(".ui.button").each(function() {
+    $(this).click(function() {
+      delete_item($(this).attr("bv"));
+      setTimeout(function() {
+        splitTable(1);
+      }, 100);
+    });
   });
 }
 
@@ -53,12 +58,12 @@ function pgJump(q) {
   });
 
   $(".left.chevron.icon").click(function() {
-    l_pgn=parseInt($("#pgn").attr("pgn"))-1;
+    l_pgn = parseInt($("#pgn").attr("pgn")) - 1;
     console.log(l_pgn);
     splitTable(l_pgn);
   });
   $(".right.chevron.icon").click(function() {
-    r_pgn=parseInt($("#pgn").attr("pgn"))+1;
+    r_pgn = parseInt($("#pgn").attr("pgn")) + 1;
     console.log(r_pgn);
     splitTable(r_pgn);
   });
@@ -109,19 +114,24 @@ function showTable(startRow, endRow, table) {
   $(".rating").rating();
 
   deleteItem();
-  
+
 };
 
-var clear = document.getElementById("clear-table");
-clear.onclick = function() {
-  chrome.storage.sync.remove('table');
-};
+// var clear = document.getElementById("clear-table");
+// clear.onclick = function() {
+//   chrome.storage.sync.remove('table');
+//   setTimeout(function() {
+//     splitTable(1);
+//   }, 100);
+// };
 
 
- function splitTable(pgn) {
-   chrome.storage.sync.get('table',  function(result) {
+function splitTable(pgn) {
+  chrome.storage.sync.get('table', function(result) {
     table = result.table;
-    var num = table.length;//表格所有行数(所有记录数)
+    var num = 0;
+    if(table)
+    num = table.length;//表格所有行数(所有记录数)
     var totalPage = 0;//总页数
     var pageSize = 4;//每页显示行数
     //总共分几页
@@ -165,7 +175,7 @@ function showFoot(currentPage, totalPage) {
   footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
   tableFoot = document.getElementById("table-foot");
   tableFoot.innerHTML = footStr;
-   console.log(parseInt($("#pgn").attr("pgn")));
+  console.log(parseInt($("#pgn").attr("pgn")));
 
   pgJump();
 }
