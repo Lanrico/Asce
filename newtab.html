@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,12 +18,10 @@
     <script src="Semantic-UI-CSS-master\semantic.min.js"></script>
     <script src='js/newtab.js'></script>
 
-</head>
+    </head>
 
-<body>
-    <div id="white_cover">
-        <div>
-
+    <body>
+        <div id="white_cover">
         </div>
         <div class="container">
             <!-- 将页面分为中间固定值，两侧对半分 -->
@@ -191,7 +190,20 @@
                                 </div>
                             </div>
                             <div class="ui bottom attached tab segment" data-tab="favorites">
-                                <!-- 其他功能加在这里 -->
+                                    <table id="show-table" class="ui celled table">
+		                        <thead>
+			                    <tr>
+				                <th>Title</th>
+				                <th>User</th>
+				                <th>Link</th>
+				                <th>Score</th>
+                                                <th><button class="ui button" id="clear-table">clear</button></th>
+			                    </tr>
+		                        </thead>
+		                        <tbody id="contain">
+		                        </tbody>
+                                        <tfoot id="table-foot"></tfoot>
+	                            </table>
                             </div>
                             <div class="ui bottom attached tab segment" data-tab="selection">
                                 <div class="ui grid">
@@ -504,10 +516,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col">
+                    </div>
                 </div>
-                <div class="col"></div>
             </div>
+
+
         </div>
+            <script src="js/table.js"></script>
+
         <script src="js/oh-my-diana.user.js"></script>
         <script src='js/afternewtab.js'></script>
     </div>
