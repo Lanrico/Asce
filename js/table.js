@@ -17,10 +17,8 @@ $("[data-tabe='favorites']").ready(function() {
 // });
 
 function deleteItem() {
-  var delete_EL = document.getElementById("delete");
-  delete_EL.onclick = function() {
+  function delete_item(BV) {
     chrome.storage.sync.get('table', function(result) {
-      var BV = delete_EL.attributes[2].nodeValue;
       var table = result.table;
       for (var i = 0; i < table.length; i++) {
         if (table[i]['link'] == BV) {
@@ -32,6 +30,9 @@ function deleteItem() {
       chrome.storage.sync.set({ table: table }, function() { });
     });
   };
+  $("#delete").click(function(){
+    delete_item($(this).attr("bv"));
+  });
 }
 
 function pgJump(q) {
@@ -52,10 +53,14 @@ function pgJump(q) {
   });
 
   $(".left.chevron.icon").click(function() {
-    splitTable(parseInt($(".active.item").attr("pgn"))-1);
+    l_pgn=parseInt($("#pgn").attr("pgn"))-1;
+    console.log(l_pgn);
+    splitTable(l_pgn);
   });
   $(".right.chevron.icon").click(function() {
-    splitTable(parseInt($(".active.item").attr("pgn"))+1);
+    r_pgn=parseInt($("#pgn").attr("pgn"))+1;
+    console.log(r_pgn);
+    splitTable(r_pgn);
   });
 }
 
@@ -160,6 +165,7 @@ function showFoot(currentPage, totalPage) {
   footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
   tableFoot = document.getElementById("table-foot");
   tableFoot.innerHTML = footStr;
+   console.log(parseInt($("#pgn").attr("pgn")));
 
   pgJump();
 }
