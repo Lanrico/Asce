@@ -196,9 +196,11 @@ function showFoot(currentPage, totalPage) {
     for (var x = 2; x < totalPage; x++) {
       footStr += `<a class="item pgn" pgn=${x}>${x}</a>`;
     }
+    footStr += `<a class="item more right">...</a>`;
+    footStr += `<a class="item pgn" pgn=${totalPage}>${totalPage}</a>`;
+  }else{
+    footStr += `<a class="item more right">...</a>`;
   }
-  footStr += `<a class="item more right">...</a>`;
-  footStr += `<a class="item pgn" pgn=${totalPage}>${totalPage}</a>`;
   // footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
   tableFoot = document.getElementById("table-foot");
   tableFoot.innerHTML = footStr;
