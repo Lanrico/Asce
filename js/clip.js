@@ -44,7 +44,7 @@ chrome.runtime.onMessage.addListener(
       var title = document.getElementsByClassName("video-title");
       tit = title[0].title;
 
-      const clip = { "title": tit, "user": cont, "link": request.url, "asoul": is_asoul };
+      const clip = { "title": tit, "user": cont, "link": request.url, "asoul": is_asoul, "score":3 };
       const data = JSON.stringify(clip);
 
       // send response

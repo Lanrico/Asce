@@ -30,38 +30,62 @@ function deleteItem() {
       chrome.storage.sync.set({ table: table }, function() { });
     });
   };
-  $("#delete").click(function(){
-    delete_item($(this).attr("bv"));
+  $(".ui.button").each(function() {
+    $(this).click(function() {
+      delete_item($(this).attr("bv"));
+      setTimeout(function() {
+        splitTable(1);
+      }, 100);
+    });
   });
 }
 
-function pgJump(q) {
-  $("#pgn2").each(function() {
+var cPgn = 1;
+
+var totalPgn = 3;
+
+function pgJump() {
+  $(".item.pgn").each(function() {
+    var thisPgn = parseInt($(this).attr("pgn"));
+    console.log(thisPgn);
     $(this).click(function() {
-      splitTable(parseInt($(this).attr("pgn")));
+      splitTable(thisPgn);
+      cPgn = thisPgn;
     });
-  });
-  $("#pgn").each(function() {
-    $(this).click(function() {
-      splitTable(parseInt($(this).attr("pgn")));
-    });
-  });
-  $("#pgn3").each(function() {
-    $(this).click(function() {
-      splitTable(parseInt($(this).attr("pgn")));
-    });
+    if (Math.abs(thisPgn - cPgn) >= 3 && thisPgn != 1 && thisPgn != totalPgn) {
+      $(this).hide();
+    }
+    if (thisPgn == cPgn) {
+      $(this).attr("class", "active item");
+    }
   });
 
+  $(".item.more.left").each(function() {
+    if (cPgn - 1 <= 3) {
+      $(this).hide();
+    }
+  });
+  $(".item.more.right").each(function() {
+    if (totalPgn - cPgn <= 3) {
+      $(this).hide();
+    }
+  });
+
+
   $(".left.chevron.icon").click(function() {
-    l_pgn=parseInt($("#pgn").attr("pgn"))-1;
+    l_pgn = parseInt($("#pgn").attr("pgn")) - 1;
     console.log(l_pgn);
     splitTable(l_pgn);
   });
   $(".right.chevron.icon").click(function() {
-    r_pgn=parseInt($("#pgn").attr("pgn"))+1;
+    r_pgn = parseInt($("#pgn").attr("pgn")) + 1;
     console.log(r_pgn);
     splitTable(r_pgn);
   });
+  $(".rating").click(function() {
+    setScore();
+  });
+
 }
 
 
@@ -69,13 +93,13 @@ function pgJump(q) {
 function showTable(startRow, endRow, table) {
   var str = "";
   var button_dic = {
-    1:"ui blue button",
-    2:"ui red button",
-    3:"ui violet button",
-    4:"ui pink button",
-    5:"ui black button",
-    0:"ui button"
-  }
+    1: "ui blue button",
+    2: "ui red button",
+    3: "ui violet button",
+    4: "ui pink button",
+    5: "ui black button",
+    0: "ui button"
+  };
   for (var i = startRow - 1; i < endRow; i++) {
     console.log("llll");
     str += '<tr>';
@@ -104,7 +128,8 @@ function showTable(startRow, endRow, table) {
     str += '</td>';
 
     // rating
-    str += '<td><div class=\"ui rating\"></div></td>';
+    var score = table[i]['score'];
+    str += `<td><div class=\"ui rating\" data-rating="${score}" bv="${BV}" data-max-rating="5"></div></td>`;
 
     // delete
     // str += `<td><button class="${button_dic[asoul]}" id="delete" bv="${BV}">删除</button></td>`;
@@ -115,22 +140,31 @@ function showTable(startRow, endRow, table) {
   contain = document.getElementById("contain");
   contain.innerHTML = str;
 
-  $(".rating").rating();
+  // $(".rating").rating();
+  $('.ui.rating')
+    .rating()
+    ;
 
   deleteItem();
-  
+
 };
+
 
 // var clear = document.getElementById("clear-table");
 // clear.onclick = function() {
 //   chrome.storage.sync.remove('table');
+//   setTimeout(function() {
+//     splitTable(1);
+//   }, 100);
 // };
 
 
- function splitTable(pgn) {
-   chrome.storage.sync.get('table',  function(result) {
+function splitTable(pgn) {
+  chrome.storage.sync.get('table', function(result) {
     table = result.table;
-    var num = table.length;//表格所有行数(所有记录数)
+    var num = 0;
+    if (table)
+      num = table.length;//表格所有行数(所有记录数)
     var totalPage = 0;//总页数
     var pageSize = 4;//每页显示行数
     //总共分几页
@@ -143,6 +177,7 @@ function showTable(startRow, endRow, table) {
     var startRow = (currentPage - 1) * pageSize + 1;//开始显示的行  1
     var endRow = currentPage * pageSize;//结束显示的行   15
     endRow = (endRow > num) ? num : endRow;
+    totalPgn = totalPage;
     showTable(startRow, endRow, table);
     showFoot(currentPage, totalPage);
   });
@@ -155,26 +190,38 @@ function showFoot(currentPage, totalPage) {
   footStr += "<tr><th colspan=\"5\">";
   footStr += "<div class=\"ui right floated pagination menu\">";
   // footStr += "<a class=\"icon item\"><i class=\"left chevron icon\"></i></a>";
-  if (totalPage <= 1) { 
-    footStr += "<a class=\"active item\">1</a>";
+  footStr += `<a class="item pgn" pgn="1">1</a>`;
+  footStr += `<a class="item more left">...</a>`;
+  if (totalPage > 2) {
+    for (var x = 2; x < totalPage; x++) {
+      footStr += `<a class="item pgn" pgn=${x}>${x}</a>`;
+    }
   }
-  else if (currentPage == totalPage) {
-    footStr += "<a class=\"item\" id=\"pgn\" pgn=1>1</a>";
-    footStr += `<a class=\"active item\" id=\"pgn2\" pgn=${currentPage}>${currentPage}</a>`;
-  }
-  else if (currentPage == 1) {
-    footStr += "<a class=\"active item\" id=\"pgn\" pgn=1>1</a>";
-    footStr += `<a class=\"item\" id=\"pgn2\" pgn=${totalPage}>${totalPage}</a>`;
-  }
-  else {
-    footStr += "<a class=\"item\" id=\"pgn2\" pgn=1>1</a>";
-    footStr += `<a class=\"active item\" id=\"pgn\" pgn=${currentPage}>${currentPage}</a>`;
-    footStr += `<a class=\"item\" id=\"pgn3\" pgn=${totalPage}>${totalPage}</a>`;
-  }
+  footStr += `<a class="item more right">...</a>`;
+  footStr += `<a class="item pgn" pgn=${totalPage}>${totalPage}</a>`;
   // footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
   tableFoot = document.getElementById("table-foot");
   tableFoot.innerHTML = footStr;
-   console.log(parseInt($("#pgn").attr("pgn")));
 
   pgJump();
+}
+
+function setScore() {
+  $(".rating").rating('setting', 'onRate', function(value) {
+    console.log(value);
+    function set_score(BV, value) {
+      chrome.storage.sync.get('table', function(result) {
+        var table = result.table;
+        for (var i = 0; i < table.length; i++) {
+          if (table[i]['link'] == BV) {
+            table[i]['score'] = value;
+          }
+        }
+        console.log(table);
+        chrome.storage.sync.set({ table: table }, function() { });
+      });
+    };
+    var bv = $(this).attr("bv");
+    set_score(bv, value);
+  });
 }
