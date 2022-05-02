@@ -40,7 +40,7 @@ function deleteItem() {
   });
 }
 
-function pgJump(q) {
+function pgJump() {
   $("#pgn2").each(function() {
     $(this).click(function() {
       splitTable(parseInt($(this).attr("pgn")));
@@ -67,6 +67,10 @@ function pgJump(q) {
     console.log(r_pgn);
     splitTable(r_pgn);
   });
+  $(".rating").click(function() {
+    setScore();
+  });
+
 }
 
 
@@ -101,7 +105,8 @@ function showTable(startRow, endRow, table) {
     str += '</td>';
 
     // rating
-    str += '<td><div class=\"ui rating\"></div></td>';
+    var score = table[i]['score'];
+    str += `<td><div class=\"ui rating\" data-rating="${score}" bv="${BV}" data-max-rating="5"></div></td>`;
 
     // delete
     str += `<td><button class="ui button" id="delete" bv="${BV}">delete</button></td>`;
@@ -111,11 +116,15 @@ function showTable(startRow, endRow, table) {
   contain = document.getElementById("contain");
   contain.innerHTML = str;
 
-  $(".rating").rating();
+  // $(".rating").rating();
+  $('.ui.rating')
+    .rating()
+    ;
 
   deleteItem();
 
 };
+
 
 // var clear = document.getElementById("clear-table");
 // clear.onclick = function() {
@@ -130,8 +139,8 @@ function splitTable(pgn) {
   chrome.storage.sync.get('table', function(result) {
     table = result.table;
     var num = 0;
-    if(table)
-    num = table.length;//表格所有行数(所有记录数)
+    if (table)
+      num = table.length;//表格所有行数(所有记录数)
     var totalPage = 0;//总页数
     var pageSize = 4;//每页显示行数
     //总共分几页
@@ -178,4 +187,24 @@ function showFoot(currentPage, totalPage) {
   console.log(parseInt($("#pgn").attr("pgn")));
 
   pgJump();
+}
+
+function setScore() {
+  $(".rating").rating('setting', 'onRate', function(value) {
+    console.log(value);
+    function set_score(BV, value) {
+      chrome.storage.sync.get('table', function(result) {
+        var table = result.table;
+        for (var i = 0; i < table.length; i++) {
+          if (table[i]['link'] == BV) {
+            table[i]['score'] = value;
+          }
+        }
+        console.log(table);
+        chrome.storage.sync.set({ table: table }, function() { });
+      });
+    };
+    var bv = $(this).attr("bv");
+    set_score(bv, value);
+  });
 }
