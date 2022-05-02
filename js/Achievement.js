@@ -618,7 +618,7 @@ var tip_img = [{
 var AchievementType_all = ["alive", "clip", "Diana", "Eileen", "Bella", "Ava", "Carol", "niubi"]
 
 //成就时间
-var achievementTime = [0, 1, 2, 3, 5, 8, 10]
+var achievementTime = [1, 2, 5, 10, 20, 50, 100, 1000]
 
 //成就弹窗的背景颜色以及图片
 var TipDesign = {
