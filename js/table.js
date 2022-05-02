@@ -133,7 +133,7 @@ function showTable(startRow, endRow, table) {
 
     // delete
     // str += `<td><button class="${button_dic[asoul]}" id="delete" bv="${BV}">删除</button></td>`;
-    str += `<td><form><button class="${button_dic[asoul]}" id="delete" bv="${BV}" type = submit>删除</button></form></td>`;
+    str += `<td><button class="${button_dic[asoul]}" id="delete" bv="${BV}">删除</button></td>`;
 
     str += '</tr>';
   }
