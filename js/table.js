@@ -77,6 +77,14 @@ function pgJump() {
 
 function showTable(startRow, endRow, table) {
   var str = "";
+  var button_dic = {
+    1:"ui blue button",
+    2:"ui red button",
+    3:"ui violet button",
+    4:"ui pink button",
+    5:"ui black button",
+    0:"ui button"
+  }
   for (var i = startRow - 1; i < endRow; i++) {
     console.log("llll");
     str += '<tr>';
@@ -109,7 +117,7 @@ function showTable(startRow, endRow, table) {
     str += `<td><div class=\"ui rating\" data-rating="${score}" bv="${BV}" data-max-rating="5"></div></td>`;
 
     // delete
-    str += `<td><button class="ui button" id="delete" bv="${BV}">delete</button></td>`;
+    str += `<td><form><button class="${button_dic[asoul]}" id="delete" bv="${BV}" type = submit>删除</button></form></td>`;
 
     str += '</tr>';
   }
@@ -164,8 +172,8 @@ function showFoot(currentPage, totalPage) {
   var footStr = "";
   footStr += "<tr><th colspan=\"5\">";
   footStr += "<div class=\"ui right floated pagination menu\">";
-  footStr += "<a class=\"icon item\"><i class=\"left chevron icon\"></i></a>";
-  if (totalPage == 1) {
+  // footStr += "<a class=\"icon item\"><i class=\"left chevron icon\"></i></a>";
+  if (totalPage <= 1) { 
     footStr += "<a class=\"active item\">1</a>";
   }
   else if (currentPage == totalPage) {
@@ -181,7 +189,7 @@ function showFoot(currentPage, totalPage) {
     footStr += `<a class=\"active item\" id=\"pgn\" pgn=${currentPage}>${currentPage}</a>`;
     footStr += `<a class=\"item\" id=\"pgn3\" pgn=${totalPage}>${totalPage}</a>`;
   }
-  footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
+  // footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
   tableFoot = document.getElementById("table-foot");
   tableFoot.innerHTML = footStr;
   console.log(parseInt($("#pgn").attr("pgn")));

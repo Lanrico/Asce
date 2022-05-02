@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Asce",
-  "version": "0.4",
-  "description": "这是一个整合了video nail、asoul tewtab和成就系统的插件",
+  "name": "Asoul Toolkit",
+  "version": "1.01",
+  "description": "这是一个Asoul风格的Chrome插件",
   "icons": {
     "128": "img/A-SOULlogoCircle.png",
     "48": "img/A-SOULlogoCircle.png",
@@ -27,41 +27,36 @@
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*.bilibili.com/*"
-      ],
-      "js": [
-        "js/jquery-3.6.0.min.js",
-        "bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js",
-		"js/clip.js",
-        "js/Achievement.js",
-        "js/oh-my-diana.user.js"
-      ],
-      "css": [
-        "bootstrap-5.1.3-dist/css/bootstrapForVideoMark.css",
-        "css/videoMark.css",
-        "css/AchievementTip.css"
-      ],
-      "run_at": "document_start"
-    }
-  ],
+  "content_scripts": [{
+    "matches": [
+      "https://*.bilibili.com/*"
+    ],
+    "js": [
+      "js/jquery-3.6.0.min.js",
+      "bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js",
+      "js/clip.js",
+      "js/Achievement.js",
+      "js/oh-my-diana.user.js"
+    ],
+    "css": [
+      "bootstrap-5.1.3-dist/css/bootstrapForVideoMark.css",
+      "css/videoMark.css",
+      "css/AchievementTip.css"
+    ],
+    "run_at": "document_start"
+  }],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';"
   },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "img/*"
-      ],
-      "matches": [
-        "https://*.bilibili.com/*"
-      ]
-    }
-  ],
-  "background":
-	{
+  "web_accessible_resources": [{
+    "resources": [
+      "img/*"
+    ],
+    "matches": [
+      "https://*.bilibili.com/*"
+    ]
+  }],
+  "background": {
     "service_worker": "js/background.js"
-	}
+  }
 }

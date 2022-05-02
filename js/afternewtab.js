@@ -8,7 +8,7 @@ $('#achievement_progress_clip').progress("set percent", 45)
 $('#achievement_progress_alive').progress("set percent", 65)
 
 //成就的各个时间阶段
-var achievementTime = [0, 1, 2, 3, 5, 8, 10]
+var achievementTime = [0, 1, 2, 5, 10, 20, 50, 100, 1000]
 //所有的成就类型
 var achievementType = ["alive", "clip", "Diana", "Eileen", "Bella", "Ava", "Carol", "niubi"]
 

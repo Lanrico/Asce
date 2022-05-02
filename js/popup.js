@@ -1,4 +1,3 @@
-$('.menu .item').tab();
 
 function initialPopup() {
   chrome.storage.sync.get(['main_videoMark', 'main_favorites'], function (status) {
@@ -73,7 +72,7 @@ document.getElementById('removeButton').addEventListener('click', async () => {
   });
 });
 
-var btn = document.getElementById("clip");
+var btn = document.getElementById("favorites_navi");
 btn.onclick = function() {
   /* 
      获取当前 tab id url

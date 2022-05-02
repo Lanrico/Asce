@@ -58,7 +58,7 @@ chrome.runtime.onMessage.addListener(
         tmp = result.table;
         tmp.push(clip);
         console.log(tmp);
-        alert("clip success");
+        alert("加入收藏夹成功");
         chrome.storage.sync.set({ table: tmp }, function() {
           console.log("succ");
           chrome.storage.sync.get('table', function(result) {

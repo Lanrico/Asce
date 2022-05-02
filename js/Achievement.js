@@ -321,7 +321,12 @@ var init_AchievementType = function() {
 var init_video = function() {
     //获取up主mid
     var a = window.location.href.split("?")[0].split("/")
-    var bv = a[a.length - 1]
+    var bv = ""
+    if (a[a.length - 1] == '') {
+        bv = a[a.length - 2]
+    } else {
+        bv = a[a.length - 1]
+    }
     fetch("https://api.bilibili.com/x/web-interface/view?bvid=" + bv)
         .then(response => response.json())
         .then(function(json) {
@@ -335,7 +340,12 @@ var init_video = function() {
 var init_live = function() {
     //获取up主mid
     var a = window.location.href.split("?")[0].split("/")
-    var id = a[a.length - 1]
+    var id = ""
+    if (a[a.length - 1] == '') {
+        id = a[a.length - 2]
+    } else {
+        id = a[a.length - 1]
+    }
     fetch("https://api.live.bilibili.com/room/v1/Room/room_init?id=" + id)
         .then(response => response.json())
         .then(function(json) {
@@ -347,7 +357,12 @@ var init_live = function() {
     //检测是否正在直播，只有正在直播时才会计算时间
     setInterval(function() {
         var a = window.location.href.split("?")[0].split("/")
-        var id = a[a.length - 1]
+        var id = ""
+        if (a[a.length - 1] == '') {
+            id = a[a.length - 2]
+        } else {
+            id = a[a.length - 1]
+        }
         fetch("https://api.live.bilibili.com/room/v1/Room/room_init?id=" + id)
             .then(response => response.json())
             .then(function(json) {
@@ -603,7 +618,7 @@ var tip_img = [{
 var AchievementType_all = ["alive", "clip", "Diana", "Eileen", "Bella", "Ava", "Carol", "niubi"]
 
 //成就时间
-var achievementTime = [0, 1, 2, 3, 5, 8, 10]
+var achievementTime = [1, 2, 5, 10, 20, 50, 100, 1000]
 
 //成就弹窗的背景颜色以及图片
 var TipDesign = {
