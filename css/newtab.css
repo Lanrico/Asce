@@ -154,9 +154,20 @@ body {
 .div_column_blank {
     height: 28%;
 }
+#show-table{
+    table-layout: fixed;
+}
+td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
-
-
+.content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 .ui.grid.secondary_grid {
     padding: 0 5%;
@@ -353,18 +364,7 @@ body {
     }
 }
 
-@media (max-height: 624px) and (max-width: 768px) {
-    /* #white_cover {
-        background-color: rgba(255, 255, 255, 0.7);
-        height: 100%;
-    } */
-
-    .column {
-        width: 20% !important;
-    }
-}
-
-@media (max-height: 424px) and (max-width: 768px) {
+@media (max-width: 768px) {
     /* #white_cover {
         background-color: rgba(255, 255, 255, 0.7);
         height: auto;
@@ -372,6 +372,10 @@ body {
 
     .column {
         width: 20% !important;
+    }
+
+    #favorites_tab_segment {
+        overflow-y: scroll;
     }
 }
 

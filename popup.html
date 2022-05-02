@@ -10,140 +10,140 @@
   <script src="bootstrap-5.1.3-dist\js\bootstrap.min.js"></script>
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="Semantic-UI-CSS-master\semantic.min.js"></script>
-</head>
+  </head>
 
-<body>
-  <div id="main_function_container">
-    <div class="ui secondary pointing menu">
-      <!-- 导航栏里的几个标签啦 -->
-      <a class="item" data-tab="videomark" id="videoMark_navi" style="display: none;">视频轴标签</a>
-      <a class="item" data-tab="favorites" id="favorites_navi" style="display: none;">收藏夹</a>
-      <a class="item" data-tab="noOne" id="noOne_navi" style="display: none;">功能关闭</a>
-    </div>
-    <div class="ui bottom attached tab segment" id="videoMark_segment" data-tab="videomark">
+  <body>
+    <div id="main_function_container">
+      <div class="ui secondary pointing menu">
+        <!-- 导航栏里的几个标签啦 -->
+        <a class="item" data-tab="videomark" id="videoMark_navi" style="display: none;">视频轴标签</a>
+        <a class="item" data-tab="favorites" id="favorites_navi" style="display: none;">添加到收藏夹</a>
+        <a class="item" data-tab="noOne" id="noOne_navi" style="display: none;">功能关闭</a>
+      </div>
+      <div class="ui bottom attached tab segment" id="videoMark_segment" data-tab="videomark">
 
-      <div class="container-fluid">
-        <h2 class="ui header">
-          <i class="bookmark outline icon"></i>
-          <div class="content">视频轴书签 <div class="sub header">让评论区中的轴变成视频的书签</div>
-          </div>
-        </h2>
+        <div class="container-fluid">
+          <h2 class="ui header">
+            <i class="bookmark outline icon"></i>
+            <div class="content">视频轴书签 <div class="sub header">让评论区中的轴变成视频的书签</div>
+            </div>
+          </h2>
 
-        <div id="videomark_main">
-          <div class="field"> 
-            <textarea spellcheck="false" id="input1" placeholder="想要更换已有标签时，                            先点击“去除标签”按钮                      注意：此功能无法应用于HEVC解码              查看解码方式点击b站播放器右下角的齿轮-更多播放设置"></textarea>
+          <div id="videomark_main">
+            <div class="field">
+              <textarea spellcheck="false" id="input1"
+                placeholder="想要更换已有标签时，                            先点击“去除标签”按钮                      注意：此功能无法应用于HEVC解码              查看解码方式点击b站播放器右下角的齿轮-更多播放设置"></textarea>
+            </div>
+            <div class="ui large buttons">
+              <button class="ui pink button" id="addButton">获取书签</button>
+              <div class="or"></div>
+              <button class="ui blue button" id="removeButton">去除书签</button>
+            </div>
+            <br>
+            <a id="tips">第一次使用点击这里</a>
           </div>
-          <div class="ui large buttons">
-            <button class="ui pink button" id="addButton">获取书签</button>
-            <div class="or"></div>
-            <button class="ui blue button" id="removeButton">去除书签</button>
+
+          <div id="videomark_tips" style="display: none;">
+
+            <div id="videomark_tip1">
+              <div class="ui raised segment">
+                <p>
+                  步骤一：找到评论区轴男的轴并复制<br>
+                  注意：每行评论必须为“时间 内容” 或 “内容 时间”，其中“内容”不能为两位以下的纯数字
+                </p>
+                <img class="ui medium bordered image" src="img/videomark_tips/step1.png">
+              </div>
+              <div class="ui buttons">
+                <div class="ui animated gray basic disabled button tip1" tabindex="0">
+                  <div class="visible content">上一步</div>
+                  <div class="hidden content">
+                    <i class="left arrow icon"></i>
+                  </div>
+                </div>
+                <div class="ui vertical animated gray basic button tip2" tabindex="0">
+                  <div class="visible content">返回</div>
+                  <div class="hidden content">
+                    <i class="stop icon"></i>
+                  </div>
+                </div>
+                <div class="ui animated gray basic button tip3" tabindex="0">
+                  <div class="visible content">下一步</div>
+                  <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="videomark_tip2" style="display: none;">
+              <div class="ui raised segment">
+                <p>
+                  步骤二：复制到插件视频轴书签的文本框中（有分p时注意要是当前分p的轴），并点击“获取书签”按钮
+                </p>
+                <img class="ui medium bordered image" src="img/videomark_tips/step2.png">
+              </div>
+              <div class="ui buttons">
+                <div class="ui animated gray basic button tip1" tabindex="0">
+                  <div class="visible content">上一步</div>
+                  <div class="hidden content">
+                    <i class="left arrow icon"></i>
+                  </div>
+                </div>
+                <div class="ui vertical animated gray basic button tip2" tabindex="0">
+                  <div class="visible content">返回</div>
+                  <div class="hidden content">
+                    <i class="stop icon"></i>
+                  </div>
+                </div>
+                <div class="ui animated gray basic button tip3" tabindex="0">
+                  <div class="visible content">下一步</div>
+                  <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="videomark_tip3" style="display: none;">
+              <div class="ui raised segment">
+                <p>
+                  步骤三：在视频的播放器中出现了“视频轴书签”，点击其中的书签便可以让进度条跳转到相应的位置了
+                </p>
+                <img class="ui medium bordered image" src="img/videomark_tips/step3.png">
+              </div>
+              <div class="ui buttons">
+                <div class="ui animated gray basic button tip1" tabindex="0">
+                  <div class="visible content">上一步</div>
+                  <div class="hidden content">
+                    <i class="left arrow icon"></i>
+                  </div>
+                </div>
+                <div class="ui vertical animated gray basic button tip2" tabindex="0">
+                  <div class="visible content">返回</div>
+                  <div class="hidden content">
+                    <i class="stop icon"></i>
+                  </div>
+                </div>
+                <div class="ui animated gray basic disabled button tip3" tabindex="0">
+                  <div class="visible content">下一步</div>
+                  <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <br>
-          <a id="tips">第一次使用点击这里</a>
         </div>
-
-        <div id="videomark_tips" style="display: none;">
-
-          <div id="videomark_tip1">
-            <div class="ui raised segment">
-              <p>
-                步骤一：找到评论区轴男的轴并复制<br>
-                注意：每行评论必须为“时间 内容” 或 “内容 时间”，其中“内容”不能为两位以下的纯数字
-              </p>
-              <img class="ui medium bordered image" src="img/videomark_tips/step1.png">
-            </div>
-            <div class="ui buttons">
-              <div class="ui animated gray basic disabled button tip1" tabindex="0">
-                <div class="visible content">上一步</div>
-                <div class="hidden content">
-                  <i class="left arrow icon"></i>
-                </div>
-              </div>
-              <div class="ui vertical animated gray basic button tip2" tabindex="0">
-                <div class="visible content">返回</div>
-                <div class="hidden content">
-                  <i class="stop icon"></i>
-                </div>
-              </div>
-              <div class="ui animated gray basic button tip3" tabindex="0">
-                <div class="visible content">下一步</div>
-                <div class="hidden content">
-                  <i class="right arrow icon"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="videomark_tip2" style="display: none;">
-            <div class="ui raised segment">
-              <p>
-                步骤二：复制到插件视频轴书签的文本框中（有分p时注意要是当前分p的轴），并点击“获取书签”按钮
-              </p>
-              <img class="ui medium bordered image" src="img/videomark_tips/step2.png">
-            </div>
-            <div class="ui buttons">
-              <div class="ui animated gray basic button tip1" tabindex="0">
-                <div class="visible content">上一步</div>
-                <div class="hidden content">
-                  <i class="left arrow icon"></i>
-                </div>
-              </div>
-              <div class="ui vertical animated gray basic button tip2" tabindex="0">
-                <div class="visible content">返回</div>
-                <div class="hidden content">
-                  <i class="stop icon"></i>
-                </div>
-              </div>
-              <div class="ui animated gray basic button tip3" tabindex="0">
-                <div class="visible content">下一步</div>
-                <div class="hidden content">
-                  <i class="right arrow icon"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="videomark_tip3" style="display: none;">
-            <div class="ui raised segment">
-              <p>
-                步骤三：在视频的播放器中出现了“视频轴书签”，点击其中的书签便可以让进度条跳转到相应的位置了
-              </p>
-              <img class="ui medium bordered image" src="img/videomark_tips/step3.png">
-            </div>
-            <div class="ui buttons">
-              <div class="ui animated gray basic button tip1" tabindex="0">
-                <div class="visible content">上一步</div>
-                <div class="hidden content">
-                  <i class="left arrow icon"></i>
-                </div>
-              </div>
-              <div class="ui vertical animated gray basic button tip2" tabindex="0">
-                <div class="visible content">返回</div>
-                <div class="hidden content">
-                  <i class="stop icon"></i>
-                </div>
-              </div>
-              <div class="ui animated gray basic disabled button tip3" tabindex="0">
-                <div class="visible content">下一步</div>
-                <div class="hidden content">
-                  <i class="right arrow icon"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-
+      </div>
+      <div class="ui bottom attached tab segment" id="favorites_segment" data-tab="favorites">
+        <div class="clipper">
+          <button class="ui button" id="clip" style="display:block;margin: 0 auto;">收藏本页</button>
         </div>
       </div>
     </div>
-    <div class="ui bottom attached tab segment" id="favorites_segment" data-tab="favorites">
-	<div class="clipper">
-		<button class="ui button" id="clip">收藏本页</button>
-	</div>
-      <!-- 其他功能加在这里 -->
-    </div>
-  </div>
-<script src="js/popup.js"></script>
-  <script src="js/clip.js"></script>
-</body>
+    <script src="js/popup.js"></script>
+    <script src="js/clip.js"></script>
+  </body>
 
 </html>

@@ -43,7 +43,7 @@ function buildNewtabDom(mostVisitedURLs) {
   }
   setTimeout(function () {
     window.stop();
-  }, 1000); //使新标签页不会因为网络问题加载太长时间占用网络资源，加载1s后停止
+  }, 5000); //使新标签页不会因为网络问题加载太长时间占用网络资源，加载5s后停止
 
 }
 
