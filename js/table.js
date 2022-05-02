@@ -16,7 +16,7 @@ $("[data-tabe='favorites']").ready(function() {
 //     .then(pgJump());
 // });
 
-function deleteItem(x) {
+function deleteItem() {
   var delete_EL = document.getElementById("delete");
   delete_EL.onclick = function() {
     chrome.storage.sync.get('table', function(result) {
@@ -45,9 +45,17 @@ function pgJump(q) {
       splitTable(parseInt($(this).attr("pgn")));
     });
   });
+  $("#pgn3").each(function() {
+    $(this).click(function() {
+      splitTable(parseInt($(this).attr("pgn")));
+    });
+  });
 
   $(".left.chevron.icon").click(function() {
-    splitTable(1);
+    splitTable(parseInt($(".active.item").attr("pgn"))-1);
+  });
+  $(".right.chevron.icon").click(function() {
+    splitTable(parseInt($(".active.item").attr("pgn"))+1);
   });
 }
 
@@ -147,7 +155,7 @@ function showFoot(currentPage, totalPage) {
   else {
     footStr += "<a class=\"item\" id=\"pgn2\" pgn=1>1</a>";
     footStr += `<a class=\"active item\" id=\"pgn\" pgn=${currentPage}>${currentPage}</a>`;
-    footStr += `<a class=\"item\" id=\"pgn2\" pgn=${totalPage}>${totalPage}</a>`;
+    footStr += `<a class=\"item\" id=\"pgn3\" pgn=${totalPage}>${totalPage}</a>`;
   }
   footStr += "<a class=\"icon item\"><i class=\"right chevron icon\"></i></a>";
   tableFoot = document.getElementById("table-foot");
