@@ -1,12 +1,29 @@
 # Asce
 
-!!!注意：b站视频有时候的标签是bwp-video，此时会由于子类shadow-root为closed的问题无法访问子类，这个问题是由于b站为了省带宽部分视频的压缩格式为HEVC，极大劣化用户体验（你所热爱的，******）。目前的解决方案是在说明文档中建议用户选择播放器齿轮里别的解码方式解决。
+向晚大魔王
+直播间：https://live.bilibili.com/22625025/
+个人主页：https://space.bilibili.com/672346917/
 
-除了收藏夹之外的功能都已经整合完毕
+贝拉kira
+直播间：https://live.bilibili.com/22632424/
+个人主页：https://space.bilibili.com/672353429/
 
-还有一些排版问题，一些功能的设置未完成
+珈乐Carol
+直播间：https://live.bilibili.com/22634198/
+个人主页：https://space.bilibili.com/351609538/
 
-已知问题：achievement加载了无用的json；
-achievement提示要改成圆角；
-achievement有无关紧要的报错；
-newtab在1080p显示器里的排版有一丢丢的问题
+嘉然今天吃什么
+直播间：https://live.bilibili.com/22637261/
+个人主页：https://space.bilibili.com/672328094/
+
+乃琳Queen
+直播间：https://live.bilibili.com/22625027/
+个人主页：https://space.bilibili.com/672342685/
+
+喜欢我们的插件的话可以去比赛官网
+https://hackathon2022.juejin.cn/#/works/detail?unique=-2dELqHPngOYlURFd3OpVQ
+给我们投票
+
+具体使用说明见项目内的说明文档，最近比较忙不是很有时间更新readme
+
+已知存在一些小bug都写在说明文档里了，有空的话就会修的。
