@@ -20,6 +20,8 @@
 直播间：https://live.bilibili.com/22625027/
 个人主页：https://space.bilibili.com/672342685/
 
+感谢b站up主@木果阿木果提供的Live2D模型
+
 喜欢我们的插件的话可以去比赛官网
 https://hackathon2022.juejin.cn/#/works/detail?unique=-2dELqHPngOYlURFd3OpVQ
 给我们投票
