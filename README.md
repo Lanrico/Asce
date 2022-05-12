@@ -1,5 +1,7 @@
 # Asce
 
+5月12号更新：由于众所周知的原因，插件大概率将不再更新
+
 向晚大魔王
 直播间：https://live.bilibili.com/22625025/
 个人主页：https://space.bilibili.com/672346917/
